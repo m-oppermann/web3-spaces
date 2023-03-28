@@ -1,8 +1,8 @@
 import Link from "next/link"
-import Search from "./ui/search"
-import Button from "./ui/button"
-import Logo from "./icons/logo"
-import PowerIcon from "./icons/power"
+import Search from "./ui/Search"
+import Button from "./ui/Button"
+import Logo from "./icons/Logo"
+import PowerIcon from "./icons/Power"
 
 export default function HeaderComponent() {
   return (

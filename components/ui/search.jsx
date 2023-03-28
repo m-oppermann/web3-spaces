@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import SearchIcon from "../icons/magnifyingGlass"
+import SearchIcon from "../icons/MagnifyingGlass"
 
 export default function SearchComponent() {
   useEffect(() => {
