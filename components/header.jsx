@@ -4,6 +4,7 @@ import Search from "./ui/Search"
 import Button from "./ui/Button"
 import Account from "./ui/Account"
 import Tooltip from "./ui/Tooltip"
+import Separator from "./ui/Separator"
 import Logo from "./icons/Logo"
 import PowerIcon from "./icons/Power"
 import SunIcon from "./icons/Sun"
@@ -39,6 +40,7 @@ export default function HeaderComponent() {
           ) : (
             <Button>Connect</Button>
           )}
+          <Separator />
           <Tooltip content="Theme">
             <Button intent="secondary" type="icon">
               <SunIcon className="absolute stroke-radix-gray-12" height={21} />
