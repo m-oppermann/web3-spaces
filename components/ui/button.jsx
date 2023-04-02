@@ -6,9 +6,9 @@ const buttonVariants = cva(
     variants: {
       intent: {
         primary:
-          "bg-radix-grayDark-2 text-radix-grayDark-12 enabled:hover:bg-radix-grayDark-4 focus:ring-radix-gray-10",
+          "bg-radix-grayDark-2 text-radix-grayDark-12 enabled:hover:bg-radix-grayDark-4 focus:bg-radix-grayDark-4 focus:ring-radix-gray-10",
         secondary:
-          "bg-radix-gray-4 text-radix-gray-12 enabled:hover:bg-radix-gray-5 focus:ring-radix-gray-8",
+          "border border-radix-gray-8 text-radix-gray-12 enabled:hover:bg-radix-gray-4 focus:bg-radix-gray-4 focus:ring-radix-gray-8",
       },
       type: {
         default: "py-2 px-4",
