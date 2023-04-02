@@ -1,10 +1,15 @@
+import { useState } from "react"
 import Link from "next/link"
 import Search from "./ui/Search"
 import Button from "./ui/Button"
+import Account from "./ui/Account"
 import Logo from "./icons/Logo"
 import PowerIcon from "./icons/Power"
+import SunIcon from "./icons/Sun"
 
 export default function HeaderComponent() {
+  const [isConnected, setIsConnected] = useState(true)
+
   return (
     <>
       <header className="sticky mx-auto flex max-w-[1376px] items-center justify-between py-4">
@@ -17,10 +22,22 @@ export default function HeaderComponent() {
           </Link>
           <Search />
         </div>
-        <div className="flex items-center gap-3">
-          <Button>Connect</Button>
+        <div className="flex items-center gap-2">
+          {isConnected ? (
+            <>
+              <Account />
+              <Button intent="secondary" type="icon">
+                <PowerIcon
+                  className="absolute stroke-radix-gray-12"
+                  height={18}
+                />
+              </Button>
+            </>
+          ) : (
+            <Button>Connect</Button>
+          )}
           <Button intent="secondary" type="icon">
-            <PowerIcon className="absolute stroke-radix-gray-12" height={19} />
+            <SunIcon className="absolute stroke-radix-gray-12" height={21} />
           </Button>
         </div>
       </header>
