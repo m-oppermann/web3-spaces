@@ -13,6 +13,7 @@ export default function App({ Component, pageProps }) {
       <style jsx global>{`
         :root {
           --font-inter: ${inter.style.fontFamily};
+          font-variant-ligatures: no-contextual;
         }
       `}</style>
       <Component {...pageProps} />
