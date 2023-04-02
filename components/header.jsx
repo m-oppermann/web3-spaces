@@ -26,9 +26,9 @@ export default function HeaderComponent() {
           {isConnected ? (
             <>
               <Account />
-              <Button intent="secondary" type="icon">
+              <Button intent="primary" type="icon">
                 <PowerIcon
-                  className="absolute stroke-radix-gray-12"
+                  className="absolute stroke-radix-gray-1"
                   height={18}
                 />
               </Button>
