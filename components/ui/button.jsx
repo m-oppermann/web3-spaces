@@ -1,4 +1,5 @@
 import { cva } from "class-variance-authority"
+import { forwardRef } from "react"
 
 const buttonVariants = cva(
   "flex items-center justify-center rounded-full font-medium transition-colors duration-150 ease-in-out focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-offset-radix-gray-2",
@@ -31,21 +32,18 @@ const buttonVariants = cva(
   }
 )
 
-export default function ButtonComponent({
-  intent,
-  type,
-  roundness,
-  disabled,
-  children,
-  ...props
-}) {
+export default forwardRef(function ButtonComponent(
+  { intent, type, roundness, disabled, children, ...props },
+  ref
+) {
   return (
     <button
       className={buttonVariants({ intent, type, roundness, disabled })}
       disabled={disabled}
+      ref={ref}
       {...props}
     >
       {children}
     </button>
   )
-}
+})

@@ -3,6 +3,7 @@ import Link from "next/link"
 import Search from "./ui/Search"
 import Button from "./ui/Button"
 import Account from "./ui/Account"
+import Tooltip from "./ui/Tooltip"
 import Logo from "./icons/Logo"
 import PowerIcon from "./icons/Power"
 import SunIcon from "./icons/Sun"
@@ -26,19 +27,23 @@ export default function HeaderComponent() {
           {isConnected ? (
             <>
               <Account />
-              <Button intent="primary" type="icon">
-                <PowerIcon
-                  className="absolute stroke-radix-gray-1"
-                  height={18}
-                />
-              </Button>
+              <Tooltip content="Disconnect">
+                <Button intent="primary" type="icon">
+                  <PowerIcon
+                    className="absolute stroke-radix-gray-1"
+                    height={18}
+                  />
+                </Button>
+              </Tooltip>
             </>
           ) : (
             <Button>Connect</Button>
           )}
-          <Button intent="secondary" type="icon">
-            <SunIcon className="absolute stroke-radix-gray-12" height={21} />
-          </Button>
+          <Tooltip content="Theme">
+            <Button intent="secondary" type="icon">
+              <SunIcon className="absolute stroke-radix-gray-12" height={21} />
+            </Button>
+          </Tooltip>
         </div>
       </header>
       <span className="absolute h-10 w-full bg-gradient-to-b from-radix-gray-2" />
