@@ -14,7 +14,7 @@ import SunIcon from "./icons/Sun"
 import MoonIcon from "./icons/Moon"
 
 export default function HeaderComponent() {
-  const [isConnected, setIsConnected] = useState(true)
+  const [isConnected, setIsConnected] = useState(false)
 
   return (
     <>
@@ -48,7 +48,12 @@ export default function HeaderComponent() {
           <Tooltip content="Theme">
             <ThemeToggle
               trigger={
-                <Button intent="secondary" type="icon" visibility>
+                <Button
+                  intent="secondary"
+                  type="icon"
+                  visibility
+                  aria-label="Theme"
+                >
                   <SunIcon
                     className="absolute scale-100 stroke-radix-gray-12 dark:scale-0 dark:stroke-radix-grayDark-12"
                     height={21}
