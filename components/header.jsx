@@ -35,7 +35,7 @@ export default function HeaderComponent() {
               <Tooltip content="Disconnect">
                 <Button intent="primary" type="icon">
                   <PowerIcon
-                    className="absolute stroke-radix-gray-1 dark:stroke-radix-gray-12"
+                    className="absolute stroke-radix-gray-1 dark:stroke-radix-grayDark-1"
                     height={18}
                   />
                 </Button>
@@ -50,11 +50,11 @@ export default function HeaderComponent() {
               trigger={
                 <Button intent="secondary" type="icon">
                   <SunIcon
-                    className="absolute scale-100 stroke-radix-gray-12 dark:scale-0 dark:stroke-radix-gray-1"
+                    className="absolute scale-100 stroke-radix-gray-12 dark:scale-0 dark:stroke-radix-grayDark-12"
                     height={21}
                   />
                   <MoonIcon
-                    className="absolute scale-0 stroke-radix-gray-12 dark:scale-100 dark:stroke-radix-gray-1"
+                    className="absolute scale-0 stroke-radix-gray-12 dark:scale-100 dark:stroke-radix-grayDark-12"
                     height={18}
                   />
                 </Button>

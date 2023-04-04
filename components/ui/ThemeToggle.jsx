@@ -22,14 +22,14 @@ export default forwardRef(function ThemeToggleComponent(
         <DropdownMenu.Content
           onCloseAutoFocus={event => event.preventDefault()}
           sideOffset={6}
-          className="flex w-36 flex-col rounded-xl border border-radix-gray-7 bg-white py-2 shadow-sm dark:border-radix-grayDark-7 dark:bg-radix-grayDark-2"
+          className="flex w-36 flex-col rounded-xl border border-radix-gray-7 bg-white py-2 text-radix-gray-12 shadow-sm dark:border-radix-grayDark-7 dark:bg-black dark:text-radix-gray-1"
           align="end"
         >
           <DropdownMenu.RadioGroup value={theme} onValueChange={setTheme}>
             <DropdownMenu.RadioItem
               className={clsx(
-                "relative mx-2 flex cursor-pointer select-none items-center rounded-lg py-1 pl-10 text-base outline-none enabled:cursor-pointer data-[disabled]:pointer-events-none data-[highlighted]:bg-radix-gray-2 dark:data-[highlighted]:bg-radix-grayDark-4",
-                theme === "light" && "bg-radix-gray-4 dark:bg-radix-grayDark-6"
+                "relative mx-2 flex cursor-pointer select-none items-center rounded-lg py-1 pl-10 text-base outline-none enabled:cursor-pointer data-[disabled]:pointer-events-none data-[highlighted]:bg-radix-gray-2 dark:data-[highlighted]:bg-radix-grayDark-2",
+                theme === "light" && "bg-radix-gray-4 dark:bg-radix-grayDark-4"
               )}
               value="light"
               disabled={theme === "light"}
@@ -42,8 +42,8 @@ export default forwardRef(function ThemeToggleComponent(
             </DropdownMenu.RadioItem>
             <DropdownMenu.RadioItem
               className={clsx(
-                "relative mx-2 flex cursor-pointer select-none items-center rounded-lg py-1 pl-10 text-base outline-none enabled:cursor-pointer data-[disabled]:pointer-events-none data-[highlighted]:bg-radix-gray-2 dark:data-[highlighted]:bg-radix-grayDark-4",
-                theme === "dark" && "bg-radix-gray-4 dark:bg-radix-grayDark-6"
+                "relative mx-2 flex cursor-pointer select-none items-center rounded-lg py-1 pl-10 text-base outline-none enabled:cursor-pointer data-[disabled]:pointer-events-none data-[highlighted]:bg-radix-gray-2 dark:data-[highlighted]:bg-radix-grayDark-2",
+                theme === "dark" && "bg-radix-gray-4 dark:bg-radix-grayDark-4"
               )}
               value="dark"
               disabled={theme === "dark"}
@@ -56,8 +56,8 @@ export default forwardRef(function ThemeToggleComponent(
             </DropdownMenu.RadioItem>
             <DropdownMenu.RadioItem
               className={clsx(
-                "relative mx-2 flex cursor-pointer select-none items-center rounded-lg py-1 pl-10 text-base outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-radix-gray-2 dark:data-[highlighted]:bg-radix-grayDark-4",
-                theme === "system" && "bg-radix-gray-4 dark:bg-radix-grayDark-6"
+                "relative mx-2 flex cursor-pointer select-none items-center rounded-lg py-1 pl-10 text-base outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-radix-gray-2 dark:data-[highlighted]:bg-radix-grayDark-2",
+                theme === "system" && "bg-radix-gray-4 dark:bg-radix-grayDark-4"
               )}
               value="system"
               disabled={theme === "system"}
