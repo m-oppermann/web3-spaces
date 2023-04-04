@@ -14,12 +14,12 @@ import SunIcon from "./icons/Sun"
 import MoonIcon from "./icons/Moon"
 
 export default function HeaderComponent() {
-  const [isConnected, setIsConnected] = useState(false)
+  const [isConnected, setIsConnected] = useState(true)
 
   return (
     <>
-      <header className="sticky mx-auto flex max-w-[1376px] items-center justify-between py-4">
-        <div className="flex items-center gap-6">
+      <header className="sticky mx-auto flex max-w-[1376px] items-center justify-between p-6">
+        <div className="flex items-center gap-6 -md:gap-4">
           <Link
             href="/"
             className="rounded-xl focus:outline-none focus:ring-1 focus:ring-radix-gray-8 focus:ring-offset-2 focus:ring-offset-radix-gray-2 dark:focus:ring-radix-grayDark-8 dark:focus:ring-offset-radix-grayDark-2"
@@ -48,7 +48,7 @@ export default function HeaderComponent() {
           <Tooltip content="Theme">
             <ThemeToggle
               trigger={
-                <Button intent="secondary" type="icon">
+                <Button intent="secondary" type="icon" visibility>
                   <SunIcon
                     className="absolute scale-100 stroke-radix-gray-12 dark:scale-0 dark:stroke-radix-grayDark-12"
                     height={21}

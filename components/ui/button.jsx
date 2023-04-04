@@ -19,6 +19,9 @@ const buttonVariants = cva(
         rounded: "rounded-xl",
         pill: "rounded-full",
       },
+      visibility: {
+        true: "-sm:hidden",
+      },
       disabled: {
         true: "opacity-50 cursor-not-allowed",
       },
@@ -33,12 +36,18 @@ const buttonVariants = cva(
 )
 
 export default forwardRef(function ButtonComponent(
-  { intent, type, roundness, disabled, children, ...props },
+  { intent, type, roundness, visibility, disabled, children, ...props },
   ref
 ) {
   return (
     <button
-      className={buttonVariants({ intent, type, roundness, disabled })}
+      className={buttonVariants({
+        intent,
+        type,
+        roundness,
+        visibility,
+        disabled,
+      })}
       disabled={disabled}
       ref={ref}
       {...props}
