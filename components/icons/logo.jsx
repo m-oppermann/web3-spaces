@@ -1,4 +1,8 @@
+import { useTheme } from "next-themes"
+
 export default function LogoComponent({ className, ...props }) {
+  const { resolvedTheme } = useTheme()
+
   return (
     <svg
       className={className}
@@ -25,9 +29,9 @@ export default function LogoComponent({ className, ...props }) {
           gradientUnits="userSpaceOnUse"
           gradientTransform="rotate(45) scale(141.421)"
         >
-          <stop offset="0.25" stop-color="#FBBF24" />
-          <stop offset="0.447917" stop-color="#99F6E4" />
-          <stop offset="0.729167" stop-color="#2563EB" />
+          <stop offset="0.25" stopColor="#FBBF24" />
+          <stop offset="0.447917" stopColor="#99F6E4" />
+          <stop offset="0.729167" stopColor="#2563EB" />
         </radialGradient>
         <linearGradient
           id="paint1_linear_0_1"
@@ -37,8 +41,8 @@ export default function LogoComponent({ className, ...props }) {
           y2="50"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#292524" />
-          <stop offset="1" stop-color="#292524" stop-opacity="0.25" />
+          <stop stopColor="#171717" />
+          <stop offset="1" stopColor="#c7c7c7" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_0_1"
@@ -48,8 +52,11 @@ export default function LogoComponent({ className, ...props }) {
           y2="49.6645"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#57534E" />
-          <stop offset="1" stop-color="#57534E" stop-opacity="0.25" />
+          <stop stopColor={resolvedTheme === "light" ? "#6f6f6f" : "#171717"} />
+          <stop
+            offset="1"
+            stopColor={resolvedTheme === "light" ? "#dbdbdb" : "#8f8f8f"}
+          />
         </linearGradient>
       </defs>
     </svg>
