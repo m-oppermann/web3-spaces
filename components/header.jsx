@@ -7,12 +7,12 @@ import Account from "./ui/Account"
 import Tooltip from "./ui/Tooltip"
 import Separator from "./ui/Separator"
 import ThemeToggle from "./ui/ThemeToggle"
+import Logo from "./ui/Logo"
 
-import Logo from "./icons/Logo"
 import PowerIcon from "./icons/Power"
 
 export default function HeaderComponent() {
-  const [isConnected, setIsConnected] = useState(true)
+  const [isConnected, setIsConnected] = useState(false)
 
   return (
     <>
