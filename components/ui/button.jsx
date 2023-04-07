@@ -7,9 +7,9 @@ const buttonVariants = cva(
     variants: {
       intent: {
         primary:
-          "bg-radix-grayDark-2 text-radix-grayDark-12 enabled:hover:bg-radix-grayDark-4 focus:bg-radix-grayDark-4 focus:ring-radix-gray-10 dark:bg-radix-gray-2 dark:text-radix-gray-12 dark:enabled:hover:bg-radix-gray-4 dark:focus:bg-radix-gray-4 dark:focus:ring-radix-grayDark-10",
+          "bg-radix-grayDark-2 text-radix-grayDark-12 focus:bg-radix-grayDark-4 focus:ring-radix-gray-10 enabled:hover:bg-radix-grayDark-4 dark:bg-radix-gray-2 dark:text-radix-gray-12 dark:focus:bg-radix-gray-4 dark:focus:ring-radix-grayDark-10 dark:enabled:hover:bg-radix-gray-4",
         secondary:
-          "border border-radix-gray-8 text-radix-gray-12 enabled:hover:bg-radix-gray-4 focus:bg-radix-gray-4 focus:ring-radix-gray-8 dark:border-radix-grayDark-8 dark:text-radix-grayDark-12 dark:enabled:hover:bg-radix-grayDark-4 dark:focus:bg-radix-grayDark-4 dark:focus:ring-radix-grayDark-8",
+          "border border-radix-grayA-8 text-radix-gray-12 focus:bg-radix-grayA-4 focus:ring-radix-grayA-8 enabled:hover:bg-radix-grayA-4 dark:border-radix-grayDarkA-8 dark:text-radix-grayDark-12 dark:focus:bg-radix-grayDarkA-4 dark:focus:ring-radix-grayDarkA-8 dark:enabled:hover:bg-radix-grayDarkA-4",
       },
       type: {
         default: "py-2 px-4",
@@ -40,19 +40,23 @@ export default forwardRef(function ButtonComponent(
   ref
 ) {
   return (
-    <button
-      className={buttonVariants({
-        intent,
-        type,
-        roundness,
-        visibility,
-        disabled,
-      })}
-      disabled={disabled}
-      ref={ref}
-      {...props}
-    >
-      {children}
-    </button>
+    <>
+      <button
+        className={buttonVariants({
+          intent,
+          type,
+          roundness,
+          visibility,
+          disabled,
+        })}
+        disabled={disabled}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </button>
+
+      {/* <button className=""></button> */}
+    </>
   )
 })
