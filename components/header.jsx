@@ -10,11 +10,9 @@ import ThemeToggle from "./ui/ThemeToggle"
 
 import Logo from "./icons/Logo"
 import PowerIcon from "./icons/Power"
-import SunIcon from "./icons/Sun"
-import MoonIcon from "./icons/Moon"
 
 export default function HeaderComponent() {
-  const [isConnected, setIsConnected] = useState(false)
+  const [isConnected, setIsConnected] = useState(true)
 
   return (
     <>
@@ -46,25 +44,7 @@ export default function HeaderComponent() {
           )}
           <Separator />
           <Tooltip content="Theme">
-            <ThemeToggle
-              trigger={
-                <Button
-                  intent="secondary"
-                  type="icon"
-                  visibility
-                  aria-label="Theme"
-                >
-                  <SunIcon
-                    className="absolute scale-100 stroke-radix-gray-12 dark:scale-0 dark:stroke-radix-grayDark-12"
-                    height={21}
-                  />
-                  <MoonIcon
-                    className="absolute scale-0 stroke-radix-gray-12 dark:scale-100 dark:stroke-radix-grayDark-12"
-                    height={18}
-                  />
-                </Button>
-              }
-            ></ThemeToggle>
+            <ThemeToggle />
           </Tooltip>
         </div>
       </header>
