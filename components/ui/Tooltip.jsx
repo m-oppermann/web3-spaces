@@ -12,10 +12,10 @@ export default function TooltipComponent({ children, content }) {
               initial={{ opacity: 0.8 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.15 }}
-              className="pointer-events-none rounded-lg bg-radix-grayDark-2 px-2 py-1 text-sm text-radix-gray-2 dark:bg-radix-grayDark-4 dark:text-radix-grayDark-11"
+              className="pointer-events-none rounded-lg bg-radix-grayDark-2 px-2 py-1 text-sm text-radix-gray-2 dark:bg-radix-grayDark-6 dark:text-radix-gray-6"
             >
               {content}
-              <Tooltip.Arrow className="fill-radix-grayDark-2 dark:fill-radix-grayDark-4" />
+              <Tooltip.Arrow className="fill-radix-grayDark-2 dark:fill-radix-grayDark-6" />
             </motion.div>
           </Tooltip.Content>
         </Tooltip.Portal>
