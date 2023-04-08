@@ -1,7 +1,17 @@
+import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
 
 export default function LogoComponent({ className, ...props }) {
+  const [mounted, setMounted] = useState(false)
   const { resolvedTheme } = useTheme()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return <div className="h-9 w-16" />
+  }
 
   return (
     <svg
