@@ -23,7 +23,7 @@ export default forwardRef(function ThemeDropdownComponent({ ...props }, ref) {
       <DropdownMenu.Portal>
         <DropdownMenu.Content
           onCloseAutoFocus={event => event.preventDefault()}
-          sideOffset={6}
+          sideOffset={8}
           className="flex w-36 flex-col rounded-xl border border-radix-gray-7 bg-white py-2 text-radix-gray-12 shadow-sm dark:border-radix-grayDark-7 dark:bg-black dark:text-radix-gray-1"
           align="end"
         >
@@ -52,7 +52,8 @@ export default forwardRef(function ThemeDropdownComponent({ ...props }, ref) {
             >
               <MoonIcon
                 className="absolute left-2 stroke-radix-gray-12 dark:stroke-radix-grayDark-12"
-                height={19}
+                height={18.5}
+                width={21}
               />
               Dark
             </DropdownMenu.RadioItem>
