@@ -22,7 +22,7 @@ export default function HeaderComponent() {
         </div>
         <div className="flex items-center gap-2">
           <Account />
-          <Separator />
+          {/* <Separator /> */}
           <Tooltip content="Theme">
             <ThemeToggle />
           </Tooltip>
