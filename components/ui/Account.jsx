@@ -1,21 +1,66 @@
-import { motion } from "framer-motion"
+import { useState, useEffect } from "react"
+
+import ConnectDropdown from "./ConnectDropdown"
+import Button from "./Button"
+import Avatar from "./Avatar"
+import Tooltip from "./Tooltip"
+import AccountDialog from "./AccountDialog"
+
+import {
+  useAccount,
+  useDisconnect,
+  useEnsName,
+  useEnsAvatar,
+  useBalance,
+} from "wagmi"
 
 export default function AccountComponent() {
-  const ethAdress = "0x9a31E9e3D21602dEf187986Cc87a7daDc43D5434"
+  const [mounted, setMounted] = useState(false)
+
+  const { address, isConnecting, isConnected } = useAccount()
+  const { data: ensName } = useEnsName({ address })
+  const { data: ensAvatar, isLoading: isLoadingAvatar } = useEnsAvatar({
+    address,
+  })
+  const { data: balance, isLoading: isLoadingBalance } = useBalance({ address })
+  const { disconnect } = useDisconnect()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return null
+  }
+
+  if (isConnected) {
+    return (
+      <div className="flex gap-2">
+        <div className="pointer-events-none flex items-center gap-2.5 rounded-full bg-radix-gray-4 px-4 py-2 text-radix-gray-11 dark:bg-radix-grayDark-4 dark:text-radix-grayDark-11">
+          {ensName
+            ? `${ensName}`
+            : address.slice(0, 4) + "..." + address.slice(-4)}
+        </div>
+        <Tooltip content="Account">
+          <AccountDialog
+            address={address}
+            ensName={ensName}
+            ensAvatar={ensAvatar}
+            isLoadingAvatar={isLoadingAvatar}
+            balance={balance}
+            isLoadingBalance={isLoadingBalance}
+            disconnect={disconnect}
+          >
+            <Avatar ensAvatar={ensAvatar} isLoadingAvatar={isLoadingAvatar} />
+          </AccountDialog>
+        </Tooltip>
+      </div>
+    )
+  }
 
   return (
-    <div className="pointer-events-none flex items-center gap-2 rounded-full bg-radix-gray-4 px-4 py-2 text-radix-gray-11 dark:bg-radix-grayDark-4 dark:text-radix-grayDark-11">
-      <motion.div
-        animate={{ opacity: [1, 0.6] }}
-        transition={{
-          duration: 1,
-          repeat: Infinity,
-          repeatType: "reverse",
-          ease: "easeInOut",
-        }}
-        className="h-3 w-3 rounded-full bg-green-600"
-      />
-      {ethAdress.slice(0, 5) + "..." + ethAdress.slice(-4)}
-    </div>
+    <ConnectDropdown isConnecting={isConnecting}>
+      <Button type="default">Connect</Button>
+    </ConnectDropdown>
   )
 }
