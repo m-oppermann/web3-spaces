@@ -2,14 +2,16 @@ import { cva } from "class-variance-authority"
 import { forwardRef } from "react"
 
 const buttonVariants = cva(
-  "flex items-center justify-center rounded-full font-medium transition-colors duration-150 ease-in-out focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-offset-radix-gray-2 dark:focus:ring-offset-radix-grayDark-2",
+  "flex items-center justify-center gap-2 rounded-full font-medium transition-colors duration-150 ease-in-out focus:outline-none",
   {
     variants: {
       intent: {
         primary:
-          "bg-radix-grayDark-2 text-radix-grayDark-12 focus:bg-radix-grayDark-4 focus:ring-radix-gray-10 enabled:hover:bg-radix-grayDark-4 dark:bg-radix-gray-2 dark:text-radix-gray-12 dark:focus:bg-radix-gray-4 dark:focus:ring-radix-grayDark-10 dark:enabled:hover:bg-radix-gray-4",
+          "bg-radix-grayDark-2 text-radix-grayDark-12 focus:bg-radix-grayDark-4 focus:ring-1 focus:ring-offset-2 focus:ring-offset-radix-gray-2 dark:focus:ring-offset-radix-grayDark-2 focus:ring-radix-gray-10 enabled:hover:bg-radix-grayDark-4 dark:bg-radix-gray-2 dark:text-radix-gray-12 dark:focus:bg-radix-gray-4 dark:focus:ring-radix-grayDark-10 dark:enabled:hover:bg-radix-gray-4",
         secondary:
-          "border border-radix-grayA-8 text-radix-gray-12 focus:bg-radix-grayA-4 focus:ring-radix-grayA-8 enabled:hover:bg-radix-grayA-4 dark:border-radix-grayDarkA-8 dark:text-radix-grayDark-12 dark:focus:bg-radix-grayDarkA-4 dark:focus:ring-radix-grayDarkA-8 dark:enabled:hover:bg-radix-grayDarkA-4",
+          "border border-radix-grayA-8 text-radix-gray-12 focus:bg-radix-grayA-4 focus:ring-1 focus:ring-offset-2 focus:ring-radix-grayA-8 enabled:hover:bg-radix-grayA-4 dark:border-radix-grayDarkA-8 dark:text-radix-grayDark-12 dark:focus:bg-radix-grayDarkA-4 dark:focus:ring-radix-grayDarkA-8 dark:focus:ring-offset-radix-grayDark-2 dark:enabled:hover:bg-radix-grayDarkA-4",
+        tertiary:
+          "bg-radix-gray-2 text-radix-gray-12 focus:bg-radix-gray-4 enabled:hover:bg-radix-gray-4 dark:bg-radix-grayDark-2 dark:text-radix-grayDark-12 dark:focus:bg-radix-grayDark-4 dark:enabled:hover:bg-radix-grayDark-4",
       },
       type: {
         default: "py-2 px-4",
@@ -22,6 +24,9 @@ const buttonVariants = cva(
       visibility: {
         true: "-sm:hidden",
       },
+      full: {
+        true: "w-full",
+      },
       disabled: {
         true: "opacity-50 cursor-not-allowed",
       },
@@ -30,13 +35,12 @@ const buttonVariants = cva(
       intent: "primary",
       type: "default",
       roundness: "pill",
-      disabled: false,
     },
   }
 )
 
 export default forwardRef(function ButtonComponent(
-  { intent, type, roundness, visibility, disabled, children, ...props },
+  { intent, type, roundness, visibility, disabled, full, children, ...props },
   ref
 ) {
   return (
@@ -47,6 +51,7 @@ export default forwardRef(function ButtonComponent(
           type,
           roundness,
           visibility,
+          full,
           disabled,
         })}
         disabled={disabled}
@@ -55,8 +60,6 @@ export default forwardRef(function ButtonComponent(
       >
         {children}
       </button>
-
-      {/* <button className=""></button> */}
     </>
   )
 })
