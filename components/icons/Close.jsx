@@ -1,4 +1,4 @@
-export default function PowerIconComponent({ className, ...props }) {
+export default function CloseIconComponent({ className, ...props }) {
   return (
     <svg
       className={className}
@@ -12,9 +12,8 @@ export default function PowerIconComponent({ className, ...props }) {
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
-        d="M5.636 5.636a9 9 0 1012.728 0M12 3v9"
+        d="M6 18L18 6M6 6l12 12"
       />
     </svg>
   )
 }
-
