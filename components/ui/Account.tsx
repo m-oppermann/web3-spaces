@@ -17,7 +17,7 @@ import {
 export default function AccountComponent() {
   const [mounted, setMounted] = useState(false)
 
-  const { address, isConnecting, isConnected } = useAccount()
+  const { address, isConnected } = useAccount()
   const { data: ensName } = useEnsName({ address })
   const { data: ensAvatar, isLoading: isLoadingAvatar } = useEnsAvatar({
     address,
@@ -59,8 +59,8 @@ export default function AccountComponent() {
   }
 
   return (
-    <ConnectDropdown isConnecting={isConnecting}>
-      <Button type="default">Connect</Button>
+    <ConnectDropdown>
+      <Button>Connect</Button>
     </ConnectDropdown>
   )
 }

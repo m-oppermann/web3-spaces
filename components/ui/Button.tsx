@@ -1,5 +1,5 @@
-import { cva } from "class-variance-authority"
 import { forwardRef } from "react"
+import { cva, VariantProps } from "class-variance-authority"
 
 const buttonVariants = cva(
   "flex items-center justify-center gap-2 rounded-full font-medium transition-colors duration-150 ease-in-out focus:outline-none",
@@ -13,7 +13,7 @@ const buttonVariants = cva(
         tertiary:
           "bg-radix-gray-2 text-radix-gray-12 focus:bg-radix-gray-4 enabled:hover:bg-radix-gray-4 dark:bg-radix-grayDark-2 dark:text-radix-grayDark-12 dark:focus:bg-radix-grayDark-4 dark:enabled:hover:bg-radix-grayDark-4",
       },
-      type: {
+      model: {
         default: "py-2 px-4",
         icon: "w-10 h-10",
       },
@@ -33,33 +33,50 @@ const buttonVariants = cva(
     },
     defaultVariants: {
       intent: "primary",
-      type: "default",
+      model: "default",
       roundness: "pill",
     },
   }
 )
 
-export default forwardRef(function ButtonComponent(
-  { intent, type, roundness, visibility, disabled, full, children, ...props },
-  ref
-) {
-  return (
-    <>
-      <button
-        className={buttonVariants({
-          intent,
-          type,
-          roundness,
-          visibility,
-          full,
-          disabled,
-        })}
-        disabled={disabled}
-        ref={ref}
-        {...props}
-      >
-        {children}
-      </button>
-    </>
-  )
-})
+interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {}
+
+export default forwardRef<HTMLButtonElement, ButtonProps>(
+  function ButtonComponent(
+    {
+      className,
+      intent,
+      model,
+      roundness,
+      visibility,
+      disabled,
+      full,
+      children,
+      ...props
+    },
+    ref
+  ) {
+    return (
+      <>
+        <button
+          className={buttonVariants({
+            className,
+            intent,
+            model,
+            roundness,
+            visibility,
+            full,
+            disabled,
+          })}
+          disabled={disabled}
+          ref={ref}
+          {...props}
+        >
+          {children}
+        </button>
+      </>
+    )
+  }
+)

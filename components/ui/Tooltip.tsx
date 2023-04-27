@@ -1,7 +1,12 @@
 import * as Tooltip from "@radix-ui/react-tooltip"
 import { motion } from "framer-motion"
 
-export default function TooltipComponent({ children, content }) {
+interface TooltipProps {
+  children: React.ReactNode
+  content: string
+}
+
+export default function TooltipComponent({ children, content }: TooltipProps) {
   return (
     <Tooltip.Provider>
       <Tooltip.Root delayDuration={450}>

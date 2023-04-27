@@ -1,11 +1,11 @@
 import Link from "next/link"
 
+import Logo from "./ui/Logo"
 import Search from "./ui/Search"
 import Account from "./ui/Account"
 import Tooltip from "./ui/Tooltip"
-import Separator from "./ui/Separator"
 import ThemeToggle from "./ui/ThemeToggle"
-import Logo from "./ui/Logo"
+import Separator from "./ui/Separator"
 
 export default function HeaderComponent() {
   return (

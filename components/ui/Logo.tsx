@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
 
-export default function LogoComponent({ className, ...props }) {
+export default function LogoComponent({ ...props }) {
   const [mounted, setMounted] = useState(false)
   const { resolvedTheme } = useTheme()
 
@@ -15,7 +15,6 @@ export default function LogoComponent({ className, ...props }) {
 
   return (
     <svg
-      className={className}
       viewBox="0 0 176 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

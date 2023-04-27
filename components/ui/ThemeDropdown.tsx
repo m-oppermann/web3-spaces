@@ -10,21 +10,24 @@ import SunIcon from "../icons/Sun"
 import MoonIcon from "../icons/Moon"
 import SettingsIcon from "../icons/Settings"
 
-export default forwardRef(function ThemeDropdownComponent({ ...props }, ref) {
+export default forwardRef<HTMLButtonElement>(function ThemeDropdownComponent(
+  { ...props },
+  ref
+) {
   const { theme, setTheme } = useTheme()
 
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger ref={ref} {...props} asChild>
-        <Button intent="secondary" type="icon" visibility aria-label="Theme">
+        <Button intent="secondary" model="icon" visibility aria-label="Theme">
           <ThemeIcon />
         </Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
         <DropdownMenu.Content
-          onCloseAutoFocus={event => event.preventDefault()}
-          sideOffset={8}
+          onCloseAutoFocus={(event: Event) => event.preventDefault()}
           className="flex w-36 flex-col rounded-xl border border-radix-gray-7 bg-white py-2 text-radix-gray-12 shadow-sm dark:border-radix-grayDark-7 dark:bg-black dark:text-radix-gray-1"
+          sideOffset={8}
           align="end"
         >
           <DropdownMenu.RadioGroup value={theme} onValueChange={setTheme}>

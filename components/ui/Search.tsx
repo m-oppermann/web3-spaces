@@ -6,7 +6,7 @@ export default function SearchComponent() {
   const [isFocused, setIsFocused] = useState(false)
 
   useEffect(() => {
-    const search = document.getElementById("search")
+    const search = document.getElementById("search") as HTMLInputElement
 
     if (!isFocused) {
       search.value = ""
@@ -16,7 +16,7 @@ export default function SearchComponent() {
       setIsFocused(!isFocused)
     }
 
-    function handleKeyDown(event) {
+    function handleKeyDown(event: KeyboardEvent) {
       if (event.metaKey && event.key === "k") {
         event.preventDefault()
         search.focus()

@@ -1,4 +1,5 @@
 import "@/styles/globals.css"
+import { AppProps } from "next/app"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "next-themes"
 
@@ -41,7 +42,7 @@ const client = createClient({
   webSocketProvider,
 })
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <style jsx global>{`
@@ -50,7 +51,6 @@ export default function App({ Component, pageProps }) {
           font-variant-ligatures: no-contextual;
         }
       `}</style>
-
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <WagmiConfig client={client}>
           <Component {...pageProps} />

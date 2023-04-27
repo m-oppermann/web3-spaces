@@ -4,20 +4,21 @@ import { useTheme } from "next-themes"
 import Button from "./Button"
 import ThemeIcon from "./ThemeIcon"
 
-export default forwardRef(function ThemeToggleComponent(
-  { children, ...props },
+export default forwardRef<HTMLSpanElement>(function ThemeToggleComponent(
+  { ...props },
   ref
 ) {
   const { resolvedTheme, setTheme } = useTheme()
 
   useEffect(() => {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)")
-    prefersDark.addEventListener("change", event => {
+    const handleChange = (event: MediaQueryListEvent) => {
       setTheme(event.matches ? "dark" : "light")
-      return () => {
-        prefersDark.removeEventListener("change", event)
-      }
-    })
+    }
+    prefersDark.addEventListener("change", handleChange)
+    return () => {
+      prefersDark.removeEventListener("change", handleChange)
+    }
   }, [setTheme])
 
   return (
@@ -27,7 +28,7 @@ export default forwardRef(function ThemeToggleComponent(
           setTheme(resolvedTheme === "light" ? "dark" : "light")
         }}
         intent="secondary"
-        type="icon"
+        model="icon"
         visibility
         aria-label="Theme"
       >
