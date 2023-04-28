@@ -38,9 +38,9 @@ export default function LogoComponent({ ...props }) {
           gradientUnits="userSpaceOnUse"
           gradientTransform="rotate(45) scale(141.421)"
         >
-          <stop offset="0.25" stopColor="#FBBF24" />
-          <stop offset="0.447917" stopColor="#99F6E4" />
-          <stop offset="0.729167" stopColor="#2563EB" />
+          <stop offset="0.25" stopColor="#C6DFEC" />
+          <stop offset="0.45" stopColor="#517BFB" />
+          <stop offset="0.75" stopColor="#C6BCF5" />
         </radialGradient>
         <linearGradient
           id="paint1_linear_0_1"
