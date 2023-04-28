@@ -8,7 +8,8 @@ import { publicProvider } from "wagmi/providers/public"
 
 import { MetaMaskConnector } from "wagmi/connectors/metaMask"
 import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet"
-import { WalletConnectConnector } from "wagmi/connectors/walletConnect"
+import { WalletConnectLegacyConnector } from 'wagmi/connectors/walletConnectLegacy'
+
 
 const inter = Inter({
   subsets: ["latin"],
@@ -31,10 +32,10 @@ const client = createClient({
         appName: "wagmi",
       },
     }),
-    new WalletConnectConnector({
+    new WalletConnectLegacyConnector({
       chains,
       options: {
-        projectId: "fd3c5f53911fb970a03a7fddd0ecf6ae",
+        qrcode: true,
       },
     }),
   ],

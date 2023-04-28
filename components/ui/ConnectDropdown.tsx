@@ -40,7 +40,9 @@ export default forwardRef<HTMLButtonElement, ConnectDropdownProps>(
               >
                 {connector.ready && (
                   <div className="flex h-12 cursor-pointer select-none items-center justify-between rounded-lg bg-radix-gray-2 py-2.5 px-3.5 text-base font-medium outline-none enabled:cursor-pointer data-[disabled]:cursor-not-allowed data-[highlighted]:bg-radix-gray-4 dark:bg-radix-grayDark-2 dark:data-[highlighted]:bg-radix-grayDark-4">
-                    {connector.name}
+                    {connector.name === "WalletConnectLegacy"
+                      ? "WalletConnect"
+                      : connector.name}
                     {isLoading && connector.id === pendingConnector?.id ? (
                       <LoadingIndicatior
                         height={20}
@@ -55,7 +57,7 @@ export default forwardRef<HTMLButtonElement, ConnectDropdownProps>(
                             className={undefined}
                             height={26}
                           />
-                        ) : connector.name === "WalletConnect" ? (
+                        ) : connector.name === "WalletConnectLegacy" ? (
                           <WalletConnectIcon
                             className={undefined}
                             height={26}
