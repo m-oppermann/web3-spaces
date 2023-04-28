@@ -81,6 +81,7 @@ export default forwardRef<HTMLButtonElement, AccountDialogProps>(
                 <div className="pointer-events-none h-[72px] w-[72px]">
                   <Avatar
                     tabIndex={-1}
+                    address={address}
                     ensAvatar={ensAvatar}
                     isLoadingAvatar={isLoadingAvatar}
                   />

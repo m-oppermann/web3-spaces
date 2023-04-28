@@ -51,7 +51,11 @@ export default function AccountComponent() {
             isLoadingBalance={isLoadingBalance}
             disconnect={disconnect}
           >
-            <Avatar ensAvatar={ensAvatar} isLoadingAvatar={isLoadingAvatar} />
+            <Avatar
+              address={address}
+              ensAvatar={ensAvatar}
+              isLoadingAvatar={isLoadingAvatar}
+            />
           </AccountDialog>
         </Tooltip>
       </div>

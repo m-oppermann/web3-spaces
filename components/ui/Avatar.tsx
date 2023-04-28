@@ -1,13 +1,28 @@
 import * as Avatar from "@radix-ui/react-avatar"
-import { forwardRef, KeyboardEvent } from "react"
+import { forwardRef, useEffect, useState } from "react"
 
 interface AvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
+  address: string
   ensAvatar: string | null
   isLoadingAvatar: boolean
 }
 
 export default forwardRef<HTMLSpanElement, AvatarProps>(
-  function AvatarComponent({ ensAvatar, isLoadingAvatar, ...props }, ref) {
+  function AvatarComponent(
+    { address, ensAvatar, isLoadingAvatar, ...props },
+    ref
+  ) {
+    const [colors, setColors] = useState([])
+
+    useEffect(() => {
+      const hue = Math.floor((parseInt(address?.slice(-2), 16) * 360) / 255)
+      setColors([
+        `hsl(${hue - 25}, 50%, 85%)`,
+        `hsl(${hue}, 95%, 65%)`,
+        `hsl(${hue + 25}, 75%, 85%)`,
+      ])
+    }, [address])
+
     return (
       <Avatar.Root
         onKeyDown={event =>
@@ -35,18 +50,19 @@ export default forwardRef<HTMLSpanElement, AvatarProps>(
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <circle cx="50" cy="50" r="50" fill="url(#paint0_radial_101_3)" />
+              <circle cx="50" cy="50" r="50" fill="url(#paint0_radial_110_2)" />
               <defs>
                 <radialGradient
-                  id="paint0_radial_101_3"
+                  id="paint0_radial_110_2"
                   cx="0"
                   cy="0"
                   r="1"
                   gradientUnits="userSpaceOnUse"
-                  gradientTransform="rotate(90) scale(141.421)"
+                  gradientTransform="rotate(45) scale(141.421)"
                 >
-                  <stop offset="0.25" stopColor="#FBBF24" />
-                  <stop offset="0.802083" stopColor="#D946EF" />
+                  <stop offset="0.25" stopColor={colors[0]} />
+                  <stop offset="0.45" stopColor={colors[1]} />
+                  <stop offset="0.75" stopColor={colors[2]} />
                 </radialGradient>
               </defs>
             </svg>
