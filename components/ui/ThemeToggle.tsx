@@ -29,7 +29,6 @@ export default forwardRef<HTMLSpanElement>(function ThemeToggleComponent(
         }}
         intent="secondary"
         model="icon"
-        visibility
         aria-label="Theme"
       >
         <ThemeIcon />

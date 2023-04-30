@@ -21,9 +21,6 @@ const buttonVariants = cva(
         rounded: "rounded-xl",
         pill: "rounded-full",
       },
-      visibility: {
-        true: "-sm:hidden",
-      },
       full: {
         true: "w-full",
       },
@@ -45,17 +42,7 @@ interface ButtonProps
 
 export default forwardRef<HTMLButtonElement, ButtonProps>(
   function ButtonComponent(
-    {
-      className,
-      intent,
-      model,
-      roundness,
-      visibility,
-      disabled,
-      full,
-      children,
-      ...props
-    },
+    { className, intent, model, roundness, disabled, full, children, ...props },
     ref
   ) {
     return (
@@ -66,7 +53,6 @@ export default forwardRef<HTMLButtonElement, ButtonProps>(
             intent,
             model,
             roundness,
-            visibility,
             full,
             disabled,
           })}

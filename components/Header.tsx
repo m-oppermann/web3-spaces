@@ -23,9 +23,11 @@ export default function HeaderComponent() {
         <div className="flex items-center gap-2">
           <Account />
           {/* <Separator /> */}
-          <Tooltip content="Theme">
-            <ThemeToggle />
-          </Tooltip>
+          <span className="-sm:hidden">
+            <Tooltip content="Theme">
+              <ThemeToggle />
+            </Tooltip>
+          </span>
         </div>
       </header>
       <span className="absolute h-10 w-full bg-gradient-to-b from-radix-gray-2 dark:from-radix-grayDark-2" />
