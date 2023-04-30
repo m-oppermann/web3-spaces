@@ -8,8 +8,7 @@ import { publicProvider } from "wagmi/providers/public"
 
 import { MetaMaskConnector } from "wagmi/connectors/metaMask"
 import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet"
-import { WalletConnectLegacyConnector } from 'wagmi/connectors/walletConnectLegacy'
-
+import { WalletConnectLegacyConnector } from "wagmi/connectors/walletConnectLegacy"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -50,6 +49,9 @@ export default function App({ Component, pageProps }: AppProps) {
         :root {
           --font-inter: ${inter.style.fontFamily};
           font-variant-ligatures: no-contextual;
+        }
+        .walletconnect-modal__base {
+          color: black;
         }
       `}</style>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
