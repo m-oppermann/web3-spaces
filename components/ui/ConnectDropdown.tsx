@@ -1,5 +1,6 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
 import { forwardRef } from "react"
+import { motion } from "framer-motion"
 
 import MetaMaskIcon from "../icons/MetaMask"
 import CoinbaseWalletIcon from "../icons/CoinbaseWallet"
@@ -23,54 +24,75 @@ export default forwardRef<HTMLButtonElement, ConnectDropdownProps>(
           {children}
         </DropdownMenu.Trigger>
         <DropdownMenu.Portal>
-          <DropdownMenu.Content
-            sideOffset={8}
-            className="flex w-[232px] flex-col gap-y-2 rounded-xl border border-radix-gray-7 bg-white p-2 text-radix-gray-12 shadow-sm dark:border-radix-grayDark-7 dark:bg-black dark:text-radix-gray-1"
-            align="end"
-          >
-            {connectors.map(connector => (
-              <DropdownMenu.Item
-                key={connector.id}
-                onSelect={(event: Event) => {
-                  event.preventDefault()
-                  connect({ connector })
-                }}
-                disabled={isLoading}
-                asChild
-              >
-                {connector.ready && (
-                  <div className="flex h-12 cursor-pointer select-none items-center justify-between rounded-lg bg-radix-gray-2 py-2.5 px-3.5 text-base font-medium outline-none enabled:cursor-pointer data-[disabled]:cursor-not-allowed data-[highlighted]:bg-radix-gray-4 dark:bg-radix-grayDark-2 dark:data-[highlighted]:bg-radix-grayDark-4">
-                    {connector.name === "WalletConnectLegacy"
-                      ? "WalletConnect"
-                      : connector.name}
-                    {isLoading && connector.id === pendingConnector?.id ? (
-                      <LoadingIndicatior
-                        height={20}
-                        className="w-[26px] animate-spin opacity-75"
-                      />
-                    ) : (
-                      <span>
-                        {connector.name === "MetaMask" ? (
-                          <MetaMaskIcon className={undefined} height={26} />
-                        ) : connector.name === "Coinbase Wallet" ? (
-                          <CoinbaseWalletIcon
-                            className={undefined}
-                            height={26}
-                          />
-                        ) : connector.name === "WalletConnectLegacy" ? (
-                          <WalletConnectIcon
-                            className={undefined}
-                            height={26}
-                          />
-                        ) : null}
-                      </span>
-                    )}
-                  </div>
-                )}
-              </DropdownMenu.Item>
-            ))}
+          <DropdownMenu.Content sideOffset={8} align="end" asChild>
+            <motion.div
+              initial={{ y: -5, scale: 0.95 }}
+              animate={{ y: 0, scale: 1 }}
+              transition={{
+                type: "spring",
+                stiffness: 400,
+                damping: 20,
+              }}
+              className="flex w-80 flex-col gap-y-2.5 rounded-2xl border border-radix-gray-7 bg-white p-2.5 text-radix-gray-12 shadow-sm dark:border-radix-grayDark-7 dark:bg-black dark:text-radix-gray-1"
+            >
+              {connectors.map(connector => (
+                <DropdownMenu.Item
+                  key={connector.id}
+                  onSelect={(event: Event) => {
+                    event.preventDefault()
+                    connect({ connector })
+                  }}
+                  disabled={isLoading}
+                  asChild
+                >
+                  {connector.ready && (
+                    <div className="relative flex h-12 cursor-pointer select-none items-center justify-center rounded-xl bg-radix-gray-2 font-medium outline-none enabled:cursor-pointer data-[disabled]:cursor-not-allowed data-[highlighted]:bg-radix-gray-4 dark:bg-radix-grayDark-2 dark:data-[highlighted]:bg-radix-grayDark-4">
+                      {isLoading && connector.id === pendingConnector?.id ? (
+                        <LoadingIndicatior
+                          height={20}
+                          className="absolute left-3 w-[26px] animate-spin opacity-75"
+                        />
+                      ) : (
+                        <span className="absolute left-3">
+                          {connector.name === "MetaMask" ? (
+                            <MetaMaskIcon className={undefined} height={26} />
+                          ) : connector.name === "Coinbase Wallet" ? (
+                            <CoinbaseWalletIcon
+                              className={undefined}
+                              height={26}
+                            />
+                          ) : connector.name === "WalletConnectLegacy" ? (
+                            <WalletConnectIcon
+                              className={undefined}
+                              height={26}
+                            />
+                          ) : null}
+                        </span>
+                      )}
 
-            {/* {error && <div>{error.message}</div>} */}
+                      {connector.name === "WalletConnectLegacy"
+                        ? "WalletConnect"
+                        : connector.name}
+                    </div>
+                  )}
+                </DropdownMenu.Item>
+              ))}
+              <DropdownMenu.Item disabled={isLoading} asChild>
+                <div
+                  onClick={() => {
+                    window.open(
+                      "https://ethereum.org/en/wallets/",
+                      "_blank"
+                    )
+                  }}
+                  className="flex h-12 cursor-pointer select-none items-center justify-center rounded-xl font-medium outline-none enabled:cursor-pointer data-[disabled]:cursor-not-allowed data-[highlighted]:bg-radix-gray-2 dark:data-[highlighted]:bg-radix-grayDark-2"
+                >
+                  {"I don't have a wallet"}
+                </div>
+              </DropdownMenu.Item>
+
+              {/* {error && <div>{error.message}</div>} */}
+            </motion.div>
           </DropdownMenu.Content>
         </DropdownMenu.Portal>
       </DropdownMenu.Root>
