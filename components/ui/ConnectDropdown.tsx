@@ -15,7 +15,7 @@ interface ConnectDropdownProps extends React.HTMLAttributes<HTMLButtonElement> {
 
 export default forwardRef<HTMLButtonElement, ConnectDropdownProps>(
   function ConnectModalComponent({ children, ...props }, ref) {
-    const { connect, connectors, error, isLoading, pendingConnector } =
+    const { connect, connectors, isLoading, pendingConnector } =
       useConnect()
 
     return (
@@ -90,8 +90,6 @@ export default forwardRef<HTMLButtonElement, ConnectDropdownProps>(
                   {"I don't have a wallet"}
                 </div>
               </DropdownMenu.Item>
-
-              {/* {error && <div>{error.message}</div>} */}
             </motion.div>
           </DropdownMenu.Content>
         </DropdownMenu.Portal>
