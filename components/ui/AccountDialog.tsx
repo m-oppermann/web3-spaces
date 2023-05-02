@@ -9,7 +9,9 @@ import CloseIcon from "../icons/Close"
 import LogoutIcon from "../icons/Logout"
 import CopyIcon from "../icons/Copy"
 import CheckIcon from "../icons/Check"
+
 import { FetchBalanceResult } from "@wagmi/core"
+import { useDisconnect } from "wagmi"
 
 interface AccountDialogProps extends React.HTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
@@ -19,7 +21,6 @@ interface AccountDialogProps extends React.HTMLAttributes<HTMLButtonElement> {
   isLoadingAvatar?: boolean
   balance?: FetchBalanceResult
   isLoadingBalance?: boolean
-  disconnect: () => void
 }
 
 export default forwardRef<HTMLButtonElement, AccountDialogProps>(
@@ -32,12 +33,13 @@ export default forwardRef<HTMLButtonElement, AccountDialogProps>(
       isLoadingAvatar,
       balance,
       isLoadingBalance,
-      disconnect,
       ...props
     },
     ref
   ) {
     const [copied, setCopied] = useState(false)
+
+    const { disconnect } = useDisconnect()
 
     const handleCopy = () => {
       navigator.clipboard.writeText(address)
@@ -133,10 +135,10 @@ export default forwardRef<HTMLButtonElement, AccountDialogProps>(
                   )}
                 </div>
                 <Button
+                  onClick={() => disconnect()}
                   intent="tertiary"
                   roundness="rounded"
                   full
-                  onClick={disconnect}
                 >
                   <LogoutIcon
                     height={20}
