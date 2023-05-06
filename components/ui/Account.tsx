@@ -6,13 +6,7 @@ import Avatar from "./Avatar"
 import Tooltip from "./Tooltip"
 import AccountDialog from "./AccountDialog"
 
-import {
-  useAccount,
-  useDisconnect,
-  useEnsName,
-  useEnsAvatar,
-  useBalance,
-} from "wagmi"
+import { useAccount, useEnsName, useEnsAvatar, useBalance } from "wagmi"
 
 export default function AccountComponent() {
   const [mounted, setMounted] = useState(false)
@@ -23,7 +17,6 @@ export default function AccountComponent() {
     address,
   })
   const { data: balance, isLoading: isLoadingBalance } = useBalance({ address })
-  const { disconnect } = useDisconnect()
 
   useEffect(() => {
     setMounted(true)
@@ -49,7 +42,6 @@ export default function AccountComponent() {
             isLoadingAvatar={isLoadingAvatar}
             balance={balance}
             isLoadingBalance={isLoadingBalance}
-            disconnect={disconnect}
           >
             <Avatar
               address={address}
