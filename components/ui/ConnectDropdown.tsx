@@ -85,7 +85,7 @@ export default forwardRef<HTMLButtonElement, ConnectDropdownProps>(
                       "_blank"
                     )
                   }}
-                  className="flex h-12 cursor-pointer select-none items-center justify-center rounded-xl font-medium outline-none enabled:cursor-pointer data-[disabled]:cursor-not-allowed data-[highlighted]:bg-radix-gray-2 dark:data-[highlighted]:bg-radix-grayDark-2"
+                  className="flex h-12 cursor-ne-resize select-none items-center justify-center rounded-xl font-medium outline-none enabled:cursor-pointer data-[disabled]:cursor-not-allowed data-[highlighted]:bg-radix-gray-2 dark:data-[highlighted]:bg-radix-grayDark-2"
                 >
                   {"I don't have a wallet"}
                 </div>
