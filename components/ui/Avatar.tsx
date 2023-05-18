@@ -1,5 +1,5 @@
 import * as Avatar from "@radix-ui/react-avatar"
-import { forwardRef, useEffect, useState } from "react"
+import { forwardRef, useState, useEffect } from "react"
 
 interface AvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
   address: string
@@ -12,9 +12,12 @@ export default forwardRef<HTMLSpanElement, AvatarProps>(
     { address, ensAvatar, isLoadingAvatar, ...props },
     ref
   ) {
+    const [mounted, setMounted] = useState(false)
     const [colors, setColors] = useState([])
 
     useEffect(() => {
+      setMounted(true)
+
       const hue = Math.floor((parseInt(address?.slice(-2), 16) * 360) / 255)
       setColors([
         `hsl(${hue - 25}, 50%, 85%)`,
@@ -22,6 +25,10 @@ export default forwardRef<HTMLSpanElement, AvatarProps>(
         `hsl(${hue + 25}, 75%, 85%)`,
       ])
     }, [address])
+
+    if (!mounted) {
+      return <div className="h-10 w-10" />
+    }
 
     return (
       <Avatar.Root
@@ -36,14 +43,13 @@ export default forwardRef<HTMLSpanElement, AvatarProps>(
       >
         {isLoadingAvatar ? (
           <div className="h-full w-full animate-pulse rounded-full bg-radix-gray-4 dark:bg-radix-grayDark-4" />
-        ) : (
+        ) : ensAvatar !== null ? (
           <Avatar.Image
             className="h-full w-full rounded-full"
             src={ensAvatar}
             alt="ENS Avatar"
           />
-        )}
-        {ensAvatar === null && (
+        ) : (
           <Avatar.Fallback className="flex h-full w-full items-center justify-center rounded-full bg-radix-gray-4">
             <svg
               viewBox="0 0 100 100"
