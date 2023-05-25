@@ -1,4 +1,12 @@
-export default function CoinbaseWalletIconComponent({ className, ...props }) {
+interface CoinbaseWalletIconProps {
+  height: number
+  className?: string
+}
+
+export default function CoinbaseWalletIconComponent({
+  className,
+  ...props
+}: CoinbaseWalletIconProps) {
   return (
     <svg
       className={className}

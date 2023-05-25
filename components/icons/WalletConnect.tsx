@@ -1,4 +1,12 @@
-export default function WalletConnectIconComponent({ className, ...props }) {
+interface WalletConnectIconProps {
+  height: number
+  className?: string
+}
+
+export default function WalletConnectIconComponent({
+  className,
+  ...props
+}: WalletConnectIconProps) {
   return (
     <svg
       className={className}
