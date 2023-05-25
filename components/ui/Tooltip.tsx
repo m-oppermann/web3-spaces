@@ -12,7 +12,7 @@ export default function TooltipComponent({ children, content }: TooltipProps) {
       <Tooltip.Root delayDuration={450}>
         <Tooltip.Trigger asChild>{children}</Tooltip.Trigger>
         <Tooltip.Portal>
-          <Tooltip.Content sideOffset={3}>
+          <Tooltip.Content className="z-10" sideOffset={3}>
             <motion.div
               initial={{ opacity: 0.8 }}
               animate={{ opacity: 1 }}
