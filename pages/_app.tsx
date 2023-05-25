@@ -3,12 +3,13 @@ import { AppProps } from "next/app"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "next-themes"
 
-import { WagmiConfig, createClient, configureChains, mainnet } from "wagmi"
+import { WagmiConfig, createConfig, configureChains, mainnet } from "wagmi"
+import { infuraProvider } from "wagmi/providers/infura"
 import { publicProvider } from "wagmi/providers/public"
 
 import { MetaMaskConnector } from "wagmi/connectors/metaMask"
 import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet"
-import { WalletConnectLegacyConnector } from "wagmi/connectors/walletConnectLegacy"
+import { WalletConnectConnector } from "wagmi/connectors/walletConnect"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,12 +17,15 @@ const inter = Inter({
   display: "swap",
 })
 
-const { chains, provider, webSocketProvider } = configureChains(
+const { chains, publicClient, webSocketPublicClient } = configureChains(
   [mainnet],
-  [publicProvider()]
+  [
+    infuraProvider({ apiKey: "3786081120834325b4d89eb73896feee" }),
+    publicProvider(),
+  ]
 )
 
-const client = createClient({
+const config = createConfig({
   autoConnect: true,
   connectors: [
     new MetaMaskConnector({ chains }),
@@ -31,15 +35,15 @@ const client = createClient({
         appName: "wagmi",
       },
     }),
-    new WalletConnectLegacyConnector({
+    new WalletConnectConnector({
       chains,
       options: {
-        qrcode: true,
+        projectId: "d767c2f488ff1178fa7f6904cddb6bfa",
       },
     }),
   ],
-  provider,
-  webSocketProvider,
+  publicClient,
+  webSocketPublicClient,
 })
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -50,12 +54,9 @@ export default function App({ Component, pageProps }: AppProps) {
           --font-inter: ${inter.style.fontFamily};
           font-variant-ligatures: no-contextual;
         }
-        .walletconnect-modal__base {
-          color: black;
-        }
       `}</style>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <WagmiConfig client={client}>
+        <WagmiConfig config={config}>
           <Component {...pageProps} />
         </WagmiConfig>
       </ThemeProvider>
