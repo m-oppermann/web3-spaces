@@ -61,7 +61,7 @@ export default function SearchComponent() {
       className={clsx(
         isFocused
           ? "-sm:fixed -sm:top-6 -sm:left-6 -sm:right-6 -sm:z-10 -sm:w-auto"
-          : "-sm:w-40",
+          : "-sm:w-40 -xs:w-36",
         "relative box-border flex h-10 w-64 items-center rounded-xl border border-radix-gray-7 bg-white p-2 shadow-sm focus-within:border-radix-gray-8 dark:border-radix-grayDark-7 dark:bg-black dark:focus-within:border-radix-grayDark-8 -md:w-56"
       )}
       style={{ borderRadius: "12px" }}
