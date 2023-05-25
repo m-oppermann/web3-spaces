@@ -1,4 +1,6 @@
 import Link from "next/link"
+import { useState, useEffect } from "react"
+import { motion } from "framer-motion"
 
 import Logo from "./ui/Logo"
 import Search from "./ui/Search"
@@ -8,9 +10,19 @@ import ThemeToggle from "./ui/ThemeToggle"
 import Separator from "./ui/Separator"
 
 export default function HeaderComponent() {
+  const [scrollTop, setScrollTop] = useState(true)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollTop(window.scrollY === 0)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
     <>
-      <header className="sticky mx-auto flex max-w-[1376px] items-center justify-between p-6">
+      <header className="fixed top-0 left-1/2 z-10 flex w-full max-w-[1376px] -translate-x-1/2 items-center justify-between bg-radix-gray-2 p-6 dark:bg-radix-grayDark-2">
         <div className="flex items-center gap-6 -md:gap-4">
           <Link
             href="/"
@@ -22,13 +34,16 @@ export default function HeaderComponent() {
         </div>
         <div className="flex items-center gap-2">
           <Account />
-          <Separator />
+          <Separator className={"h-7"} />
           <Tooltip content="Theme">
             <ThemeToggle />
           </Tooltip>
         </div>
+        <motion.div
+          animate={{ opacity: scrollTop ? 0 : 1 }}
+          className="absolute -bottom-10 left-0 h-10 w-full bg-gradient-to-b from-radix-gray-2 to-transparent dark:from-radix-grayDark-2"
+        />
       </header>
-      <span className="absolute h-10 w-full bg-gradient-to-b from-radix-gray-2 dark:from-radix-grayDark-2" />
     </>
   )
 }
