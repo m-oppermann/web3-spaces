@@ -60,14 +60,14 @@ export default forwardRef<HTMLButtonElement, AccountDialogProps>(
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.15 }}
-              className="opacity-1 fixed inset-0 bg-radix-grayA-6"
+              className="opacity-1 fixed inset-0 z-10 bg-radix-grayA-6 dark:bg-radix-grayA-8"
             />
           </Dialog.Overlay>
           <Dialog.Content
             onOpenAutoFocus={event => {
               event.preventDefault(), (event.target as HTMLDivElement).focus()
             }}
-            className="fixed top-[50%] left-[50%] w-full max-w-xs translate-x-[-50%] translate-y-[-50%] focus:outline-none"
+            className="fixed top-[50%] left-[50%] z-10 w-full max-w-xs translate-x-[-50%] translate-y-[-50%] focus:outline-none"
           >
             <motion.div
               initial={{ y: 15, scale: 0.95 }}
@@ -85,7 +85,6 @@ export default forwardRef<HTMLButtonElement, AccountDialogProps>(
                     tabIndex={-1}
                     address={address}
                     ensAvatar={ensAvatar}
-                    isLoadingAvatar={isLoadingAvatar}
                   />
                 </div>
                 <div className="flex flex-col items-center justify-center">
@@ -125,11 +124,7 @@ export default forwardRef<HTMLButtonElement, AccountDialogProps>(
                     </div>
                   ) : (
                     <div className="mb-2 flex gap-1 text-radix-gray-11 dark:text-radix-grayDark-11">
-                      <span>
-                        {balance?.formatted !== "0.0"
-                          ? balance?.formatted.slice(0, 4)
-                          : "0.00"}
-                      </span>
+                      <span>{balance?.formatted.slice(0, 4)}</span>
                       <span>{balance?.symbol}</span>
                     </div>
                   )}
