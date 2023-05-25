@@ -19,14 +19,14 @@ export default forwardRef<HTMLButtonElement>(function ThemeDropdownComponent(
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger ref={ref} {...props} asChild>
-        <Button intent="secondary" model="icon" visibility aria-label="Theme">
+        <Button intent="secondary" model="icon" aria-label="Theme">
           <ThemeIcon />
         </Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
         <DropdownMenu.Content
           onCloseAutoFocus={(event: Event) => event.preventDefault()}
-          className="flex w-36 flex-col rounded-xl border border-radix-gray-7 bg-white py-2 text-radix-gray-12 shadow-sm dark:border-radix-grayDark-7 dark:bg-black dark:text-radix-gray-1"
+          className="z-10 flex w-36 flex-col rounded-xl border border-radix-gray-7 bg-white py-2 text-radix-gray-12 shadow-sm dark:border-radix-grayDark-7 dark:bg-black dark:text-radix-gray-1"
           sideOffset={8}
           align="end"
         >
