@@ -54,6 +54,9 @@ export default function App({ Component, pageProps }: AppProps) {
           --font-inter: ${inter.style.fontFamily};
           font-variant-ligatures: no-contextual;
         }
+        body {
+          pointer-events: inherit !important;
+        }
       `}</style>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <WagmiConfig config={config}>
