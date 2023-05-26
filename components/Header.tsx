@@ -41,7 +41,7 @@ export default function HeaderComponent() {
         </div>
         <motion.div
           animate={{ opacity: scrollTop ? 0 : 1 }}
-          className="absolute -bottom-10 left-0 h-10 w-full bg-gradient-to-b from-radix-gray-2 to-transparent dark:from-radix-grayDark-2"
+          className="pointer-events-none absolute -bottom-10 left-0 h-10 w-full bg-gradient-to-b from-radix-gray-2 to-transparent dark:from-radix-grayDark-2"
         />
       </header>
     </>
