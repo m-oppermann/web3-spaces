@@ -20,12 +20,23 @@ model User {
   posts     Post[]
 }
 
+model Space {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  title       String   @unique @db.VarChar(100)
+  description String?  @db.VarChar(250)
+  posts       Post[]
+}
+
 model Post {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
-  content   String   @db.VarChar(250)
+  content   String   @unique @db.VarChar(250)
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    Int
+  space     Space    @relation(fields: [spaceId], references: [id])
+  spaceId   Int
 
   @@index([userId])
+  @@index([spaceId])
 }
