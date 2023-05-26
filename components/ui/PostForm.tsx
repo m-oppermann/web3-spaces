@@ -7,10 +7,11 @@ import Button from "./Button"
 import { useSignMessage } from "wagmi"
 
 export default function PostFormComponent({
+  isConnected,
+  currentSpace,
+  currentUser,
   readPosts,
   readUsers,
-  currentUser,
-  isConnected,
 }) {
   const { isLoading, isError, signMessage } = useSignMessage({
     message:
@@ -48,7 +49,7 @@ export default function PostFormComponent({
   }
 
   const submitPost = async () => {
-    const body = { content, userId: currentUser.id }
+    const body = { content, userId: currentUser.id, spaceId: currentSpace.id }
     const response = await fetch("/api/post", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

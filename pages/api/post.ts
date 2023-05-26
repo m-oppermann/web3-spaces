@@ -10,6 +10,7 @@ export default async function handler(req, res) {
         data: {
           content: body.content,
           user: { connect: { id: body.userId } },
+          space: { connect: { id: body.spaceId } },
         },
       })
       return res.status(200).json(newEntry, { success: true })
