@@ -43,10 +43,13 @@ export default forwardRef<HTMLSpanElement, AvatarProps>(
       >
         <div className="h-full w-full">
           <Avatar.Image
-            className="absolute h-full w-full rounded-full"
+            className="absolute z-[2] h-full w-full rounded-full"
             src={ensAvatar}
             alt="ENS Avatar"
           />
+          {ensAvatar && (
+            <span className="absolute z-[1] h-full w-full rounded-full bg-radix-gray-4 dark:bg-radix-grayDark-4" />
+          )}
           <Avatar.Fallback
             style={gradient}
             className="absolute h-full w-full rounded-full bg-radix-gray-4 dark:bg-radix-grayDark-4"
