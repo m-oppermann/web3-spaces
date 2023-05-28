@@ -50,6 +50,20 @@ export default function IndexPage() {
     )
   }, [users, posts, currentSpace])
 
+  const readSpaces = async () => {
+    const response = await fetch("/api/space", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    })
+    const spaces = await response.json()
+    if (response.status === 200) {
+      setSpaces(spaces)
+      setTimeout(() => {
+        setIsLoadingSpaces(false)
+      }, 150)
+    }
+  }
+
   const readPosts = async () => {
     const response = await fetch("/api/post", {
       method: "GET",
@@ -58,7 +72,9 @@ export default function IndexPage() {
     const posts = await response.json()
     if (response.status === 200) {
       setPosts(posts)
-      setIsLoadingPosts(false)
+      setTimeout(() => {
+        setIsLoadingPosts(false)
+      }, 150)
     }
   }
 
@@ -74,18 +90,6 @@ export default function IndexPage() {
     }
   }
 
-  const readSpaces = async () => {
-    const response = await fetch("/api/space", {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    })
-    const spaces = await response.json()
-    if (response.status === 200) {
-      setSpaces(spaces)
-      setIsLoadingSpaces(false)
-    }
-  }
-
   return (
     <UserContext.Provider value={{ users, isLoadingUsers }}>
       <Layout>
@@ -97,6 +101,7 @@ export default function IndexPage() {
             currentSpaceNr={currentSpaceNr}
             setCurrentSpaceNr={setCurrentSpaceNr}
             contributers={contributers}
+            isLoadingSpaces={isLoadingSpaces}
             isLoadingPosts={isLoadingPosts}
           />
           <div className="w-full flex-grow -lg:h-64">
@@ -116,6 +121,7 @@ export default function IndexPage() {
           currentSpace={currentSpace}
           currentUser={currentUser}
           contributers={contributers}
+          isLoadingPosts={isLoadingPosts}
         />
       </Layout>
     </UserContext.Provider>
