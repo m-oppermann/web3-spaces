@@ -32,6 +32,7 @@ export default function PostSectionComponent({
           damping: 20,
         }
       )
+      document.getElementById("scrollContainer").scrollLeft = 0
     }
   }, [animate, currentSpace, isLoadingPosts])
 
@@ -57,6 +58,7 @@ export default function PostSectionComponent({
             <>
               <div ref={scope}>
                 <div
+                  id="scrollContainer"
                   onScroll={handleScrollEnd}
                   className={clsx(
                     "flex min-h-[290px] gap-4 overflow-x-scroll lg:py-6 -lg:flex-col",
