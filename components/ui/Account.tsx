@@ -1,5 +1,5 @@
-import { useState, useEffect, useContext, use } from "react"
-import { UserContext } from "@/pages/index"
+import { useState, useEffect, useContext } from "react"
+import { Context } from "@/pages/index"
 
 import ConnectDropdown from "./ConnectDropdown"
 import Button from "./Button"
@@ -19,7 +19,7 @@ export default function AccountComponent() {
   })
   const { data: balance, isLoading: isLoadingBalance } = useBalance({ address })
 
-  const { users, isLoadingUsers } = useContext(UserContext)
+  const { users, isLoadingUsers } = useContext(Context)
 
   useEffect(() => {
     setMounted(true)

@@ -52,7 +52,7 @@ export default function PostComponent({
   return (
     <div
       className={
-        "h-full rounded-2xl border border-radix-gray-7 bg-white p-6 shadow-sm dark:border-radix-grayDark-7 dark:bg-black"
+        "rounded-2xl border border-radix-gray-7 bg-white p-6 shadow-sm dark:border-radix-grayDark-7 dark:bg-black"
       }
     >
       <div className="flex flex-col gap-6">

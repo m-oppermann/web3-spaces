@@ -1,6 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog"
 import { forwardRef, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 
 import Avatar from "./Avatar"
 import Button from "./Button"
@@ -60,7 +60,7 @@ export default forwardRef<HTMLButtonElement, AccountDialogProps>(
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.15 }}
-              className="opacity-1 fixed inset-0 z-10 bg-radix-grayA-6 dark:bg-radix-grayA-8"
+              className="fixed inset-0 z-10 bg-radix-grayA-6 dark:bg-radix-grayA-10"
             />
           </Dialog.Overlay>
           <Dialog.Content
@@ -97,7 +97,6 @@ export default forwardRef<HTMLButtonElement, AccountDialogProps>(
                         ? `${ensName}`
                         : address.slice(0, 4) + "..." + address.slice(-4)}
                     </h6>
-                    <AnimatePresence>
                       {copied ? (
                         <CheckIcon
                           initial={{ y: 2, scale: 0.9 }}
@@ -116,7 +115,6 @@ export default forwardRef<HTMLButtonElement, AccountDialogProps>(
                           className="absolute -right-6 top-1 stroke-radix-gray-8 transition-all duration-150 ease-in-out group-hover:stroke-radix-gray-11 dark:stroke-radix-grayDark-8 dark:group-hover:stroke-radix-grayDark-11"
                         />
                       )}
-                    </AnimatePresence>
                   </div>
                   {isLoadingBalance ? (
                     <div className="mb-2 flex h-6 w-16 items-center ">

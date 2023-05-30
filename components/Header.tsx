@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 
 import Logo from "./ui/Logo"
-import Search from "./ui/Search"
+import SearchDialog from "./ui/SearchDialog"
 import Account from "./ui/Account"
 import Tooltip from "./ui/Tooltip"
 import ThemeToggle from "./ui/ThemeToggle"
@@ -22,19 +22,19 @@ export default function HeaderComponent() {
 
   return (
     <>
-      <header className="fixed top-0 left-1/2 z-10 flex w-full max-w-[1376px] -translate-x-1/2 items-center justify-between bg-radix-gray-2 p-6 dark:bg-radix-grayDark-2">
-        <div className="flex items-center gap-6 -md:gap-4">
+      <header className="fixed top-0 left-0 right-0 z-10 mx-auto flex w-full max-w-[1376px] items-center justify-between bg-radix-gray-2 p-6 dark:bg-radix-grayDark-2">
+        <div className="flex items-center gap-6 -sm:gap-4">
           <Link
             href="/"
             className="rounded-xl focus:outline-none focus:ring-1 focus:ring-radix-gray-8 focus:ring-offset-2 focus:ring-offset-radix-gray-2 dark:focus:ring-radix-grayDark-8 dark:focus:ring-offset-radix-grayDark-2"
           >
             <Logo width={64} height={36} />
           </Link>
-          <Search />
+          <SearchDialog />
         </div>
         <div className="flex items-center gap-2">
           <Account />
-          <Separator className={"h-7"} />
+          <Separator className={"h-7 w-px -sm:hidden"} />
           <Tooltip content="Theme">
             <ThemeToggle />
           </Tooltip>
