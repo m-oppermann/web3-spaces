@@ -6,7 +6,7 @@ export default function SeparatorComponent({ className }) {
     <Separator.Root
       className={clsx(
         className,
-        "mx-1 w-px rounded bg-radix-gray-7 dark:bg-radix-grayDark-7 -sm:hidden"
+        "rounded bg-radix-gray-7 dark:bg-radix-grayDark-7"
       )}
       orientation="vertical"
       decorative
