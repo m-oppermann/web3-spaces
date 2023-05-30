@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import { useAnimate, stagger } from "framer-motion"
 
 import ChevronLeft from "@/components/icons/ChevronLeft"
@@ -19,10 +19,10 @@ export default function SpaceGroupComponent({
   const [scope, animate] = useAnimate()
 
   useEffect(() => {
-    if (!isLoadingPosts) {
+    if (!isLoadingSpaces) {
       animate("div[data-item]", { opacity: [0, 1] }, { delay: 0.15 })
     }
-  }, [animate, isLoadingPosts])
+  }, [animate, isLoadingSpaces])
 
   useEffect(() => {
     if (!isLoadingSpaces) {
@@ -44,35 +44,41 @@ export default function SpaceGroupComponent({
         </>
       ) : (
         <div ref={scope}>
-          <div data-item className="mb-3 flex items-center gap-2">
-            <div className="flex items-center gap-0.5 rounded-full bg-radix-gray-4 p-1.5 dark:bg-radix-grayDark-4">
-              <button
-                onClick={() => setCurrentSpaceNr(currentSpaceNr - 1)}
-                className="group focus:outline-none disabled:opacity-50"
-                disabled={currentSpaceNr <= 1}
-              >
-                <ChevronLeft
-                  className="stroke-radix-gray-11 group-focus:stroke-radix-gray-12 dark:stroke-radix-grayDark-11 dark:group-focus:stroke-radix-grayDark-12"
-                  height={18}
-                />
-              </button>
-              <span className="pointer-events-none text-sm font-medium">
-                {currentSpace?.id + " "}
-                <span className="text-radix-gray-9 dark:text-radix-grayDark-9">
-                  /
+          <div className="mb-3 flex">
+            <div className="rounded-full bg-radix-gray-4 p-1.5 dark:bg-radix-grayDark-4">
+              <div data-item className="flex items-center gap-0.5">
+                <button
+                  onClick={() => setCurrentSpaceNr(currentSpaceNr - 1)}
+                  className="group focus:outline-none disabled:opacity-50"
+                  disabled={currentSpaceNr <= 1}
+                >
+                  <ChevronLeft
+                    className="stroke-radix-gray-11 group-focus:stroke-radix-gray-12 dark:stroke-radix-grayDark-11 dark:group-focus:stroke-radix-grayDark-12"
+                    height={18}
+                  />
+                </button>
+                <span className="pointer-events-none flex gap-1 text-sm font-medium">
+                  <span className="flex min-w-[10px] justify-center">
+                    {currentSpace?.id}
+                  </span>
+                  <span className="text-radix-gray-9 dark:text-radix-grayDark-9">
+                    /
+                  </span>
+                  <span className="flex min-w-[10px] justify-center">
+                    {spaces?.length}
+                  </span>
                 </span>
-                {" " + spaces?.length}
-              </span>
-              <button
-                onClick={() => setCurrentSpaceNr(currentSpaceNr + 1)}
-                className="group focus:outline-none disabled:opacity-50"
-                disabled={currentSpaceNr >= spaces?.length}
-              >
-                <ChevronRight
-                  className="stroke-radix-gray-11 group-focus:stroke-radix-gray-12 dark:stroke-radix-grayDark-11 dark:group-focus:stroke-radix-grayDark-12"
-                  height={18}
-                />
-              </button>
+                <button
+                  onClick={() => setCurrentSpaceNr(currentSpaceNr + 1)}
+                  className="group focus:outline-none disabled:opacity-50"
+                  disabled={currentSpaceNr >= spaces?.length}
+                >
+                  <ChevronRight
+                    className="stroke-radix-gray-11 group-focus:stroke-radix-gray-12 dark:stroke-radix-grayDark-11 dark:group-focus:stroke-radix-grayDark-12"
+                    height={18}
+                  />
+                </button>
+              </div>
             </div>
           </div>
           <div data-group>
@@ -83,9 +89,10 @@ export default function SpaceGroupComponent({
               {currentSpace?.description}
             </p>
           </div>
-          <div data-group="1" className="flex h-10 items-center gap-3">
-            {posts?.length !== 0 && (
-              <ul className="ml-3 flex items-center">
+          <div data-group="1" className="flex h-10 items-center">
+            {posts?.filter(post => post.spaceId === currentSpace?.id).length !==
+              0 && (
+              <ul className="mx-3 flex items-center">
                 {contributers?.slice(0, 3).map((contributer, index) => (
                   <li
                     key={index}
