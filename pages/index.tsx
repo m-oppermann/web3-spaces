@@ -8,7 +8,7 @@ import SpaceGroup from "@/components/ui/SpaceGroup"
 
 import { useAccount, useBalance } from "wagmi"
 
-export const UserContext = createContext(null)
+export const Context = createContext(null)
 
 export default function IndexPage() {
   const { address, isConnected } = useAccount()
@@ -91,7 +91,16 @@ export default function IndexPage() {
   }
 
   return (
-    <UserContext.Provider value={{ users, isLoadingUsers }}>
+    <Context.Provider
+      value={{
+        spaces,
+        posts,
+        users,
+        setCurrentSpace,
+        setCurrentSpaceNr,
+        isLoadingUsers,
+      }}
+    >
       <Layout>
         <section className="mx-auto flex max-w-[1376px] gap-24 p-6 pt-28 -xl:gap-16 -lg:max-w-2xl -lg:flex-col -lg:gap-8 -lg:pb-4 -sm:pb-2 -sm:pt-24">
           <SpaceGroup
@@ -124,6 +133,6 @@ export default function IndexPage() {
           isLoadingPosts={isLoadingPosts}
         />
       </Layout>
-    </UserContext.Provider>
+    </Context.Provider>
   )
 }
