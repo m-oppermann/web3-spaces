@@ -46,7 +46,7 @@ export default function SpaceGroupComponent({
         <div ref={scope}>
           <div className="mb-3 flex">
             <div className="rounded-full bg-radix-gray-4 p-1.5 dark:bg-radix-grayDark-4">
-              <div data-item className="flex items-center gap-0.5">
+              <div data-item className="flex items-center gap-px">
                 <button
                   onClick={() => setCurrentSpaceNr(currentSpaceNr - 1)}
                   className="group focus:outline-none disabled:opacity-50"
@@ -57,7 +57,7 @@ export default function SpaceGroupComponent({
                     height={18}
                   />
                 </button>
-                <span className="pointer-events-none flex gap-1 text-sm font-medium">
+                <span className="pointer-events-none flex gap-[2.5px] text-sm font-medium">
                   <span className="flex min-w-[10px] justify-center">
                     {currentSpace?.id}
                   </span>

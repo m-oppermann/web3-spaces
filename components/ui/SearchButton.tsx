@@ -9,7 +9,7 @@ export default forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         {...props}
-        className="relative flex h-10 w-48 items-center rounded-xl border border-radix-gray-7 bg-white p-2 shadow-sm outline-none focus:border-radix-gray-8 dark:border-radix-grayDark-7 dark:bg-black dark:focus:border-radix-grayDark-8 -sm:w-40 -xs:w-32"
+        className="relative flex h-10 w-48 items-center rounded-xl border border-radix-gray-7 bg-white p-2 shadow-sm outline-none focus:border-radix-gray-8 dark:border-radix-grayDark-7 dark:bg-black dark:focus:border-radix-grayDark-8 -sm:w-32"
       >
         <span className="absolute left-3 flex items-center gap-2 text-radix-gray-9 dark:text-radix-grayDark-9">
           <SearchIcon

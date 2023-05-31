@@ -35,9 +35,11 @@ export default function HeaderComponent() {
         <div className="flex items-center gap-2">
           <Account />
           <Separator className={"h-7 w-px -sm:hidden"} />
-          <Tooltip content="Theme">
-            <ThemeToggle />
-          </Tooltip>
+          <div className="-sm:hidden">
+            <Tooltip content="Theme">
+              <ThemeToggle />
+            </Tooltip>
+          </div>
         </div>
         <motion.div
           animate={{ opacity: scrollTop ? 0 : 1 }}

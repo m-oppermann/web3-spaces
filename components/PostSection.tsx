@@ -22,7 +22,7 @@ export default function PostSectionComponent({
 
   useEffect(() => {
     if (!isLoadingPosts) {
-      if (posts?.filter(post => post.spaceId === currentSpace.id).length > 0) {
+      if (posts?.filter(post => post.spaceId === currentSpace?.id).length > 0) {
         animate(
           "div[data-group]",
           { opacity: [0, 1], y: [-20, 0] },
