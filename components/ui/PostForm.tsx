@@ -101,7 +101,7 @@ export default function PostFormComponent({
                 "Post"
               )}
             </Button>
-            <span className="text-radix-gray-11 dark:text-radix-grayDark-11">
+            <span className="flex h-10 items-center text-radix-gray-11 dark:text-radix-grayDark-11">
               {isLoading && !isError && "Waiting for signature..."}
               {!isConnected && count > 0 && "No wallet connection..."}
               {isConnected && count > 0 && count < 100 && "Write some more..."}
