@@ -1,16 +1,19 @@
 import { useState, useEffect, useContext } from "react"
-import { Command, useCommandState } from "cmdk"
-import SearchButton from "./SearchButton"
 import { motion } from "framer-motion"
-import Separator from "./Separator"
+import { Command } from "cmdk"
+
 import ChevronRight from "../icons/ChevronRight"
 import CloseIcon from "../icons/Close"
+
+import SearchButton from "./SearchButton"
+import Separator from "./Separator"
+
 import { Context } from "@/pages/index"
 
 export default function SearchDialogComponent() {
   const [open, setOpen] = useState(false)
 
-  const { spaces, posts, setCurrentSpace, setCurrentSpaceNr } =
+  const { spaces, posts, setCurrentSpace, setCurrentSpaceNr, isLoadingSpaces } =
     useContext(Context)
 
   useEffect(() => {
@@ -60,41 +63,49 @@ export default function SearchDialogComponent() {
           </div>
           <Separator className="mt-4 mb-2 h-px w-full" />
           <Command.List className="overflow-y-scroll px-2 sm:max-h-64">
-            <Command.Empty className="flex h-16 items-center justify-center text-radix-gray-11 dark:text-radix-grayDark-11">
-              No results found.
-            </Command.Empty>
-            <Command.Group>
-              {spaces?.map((space, index) => (
-                <Command.Item
-                  key={index}
-                  value={space.title}
-                  onSelect={() => {
-                    setOpen(false)
-                    setCurrentSpace(
-                      spaces.find(space => space.id === index + 1)
-                    )
-                    setCurrentSpaceNr(space.id)
-                  }}
-                  className="group relative flex cursor-pointer flex-col justify-center rounded-xl py-2 px-4 sm:aria-selected:bg-radix-gray-2 sm:dark:aria-selected:bg-radix-grayDark-2"
-                >
-                  <p className="w-11/12">{space.title}</p>
-                  <span
-                    data-hidden
-                    className="mt-1 text-sm text-radix-gray-11 dark:text-radix-grayDark-11"
-                  >
-                    {posts?.filter(post => post.spaceId === space.id).length +
-                      " "}
-                    Contribution
-                    {posts?.filter(post => post.spaceId === space.id).length !==
-                      1 && "s"}
-                  </span>
-                  <ChevronRight
-                    height={18}
-                    className="absolute right-4 stroke-radix-gray-10 dark:stroke-radix-grayDark-10 sm:invisible sm:group-aria-selected:visible"
-                  />
-                </Command.Item>
-              ))}
-            </Command.Group>
+            {isLoadingSpaces ? (
+              <div className="flex h-16 items-center justify-center text-radix-gray-11 dark:text-radix-grayDark-11">
+                <Command.Loading>Loading spaces...</Command.Loading>
+              </div>
+            ) : (
+              <>
+                <Command.Empty className="flex h-16 items-center justify-center text-radix-gray-11 dark:text-radix-grayDark-11">
+                  No results found.
+                </Command.Empty>
+                <Command.Group>
+                  {spaces?.map((space, index) => (
+                    <Command.Item
+                      key={index}
+                      value={space.title}
+                      onSelect={() => {
+                        setOpen(false)
+                        setCurrentSpace(
+                          spaces.find(space => space.id === index + 1)
+                        )
+                        setCurrentSpaceNr(space.id)
+                      }}
+                      className="group relative flex cursor-pointer flex-col justify-center rounded-xl py-2 px-4 sm:aria-selected:bg-radix-gray-2 sm:dark:aria-selected:bg-radix-grayDark-2"
+                    >
+                      <p className="w-11/12">{space.title}</p>
+                      <span
+                        data-hidden
+                        className="mt-1 text-sm text-radix-gray-11 dark:text-radix-grayDark-11"
+                      >
+                        {posts?.filter(post => post.spaceId === space.id)
+                          .length + " "}
+                        Contribution
+                        {posts?.filter(post => post.spaceId === space.id)
+                          .length !== 1 && "s"}
+                      </span>
+                      <ChevronRight
+                        height={18}
+                        className="absolute right-4 stroke-radix-gray-10 dark:stroke-radix-grayDark-10 sm:invisible sm:group-aria-selected:visible"
+                      />
+                    </Command.Item>
+                  ))}
+                </Command.Group>
+              </>
+            )}
           </Command.List>
         </motion.div>
       </Command.Dialog>

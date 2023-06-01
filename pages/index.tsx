@@ -98,6 +98,7 @@ export default function IndexPage() {
         users,
         setCurrentSpace,
         setCurrentSpaceNr,
+        isLoadingSpaces,
         isLoadingUsers,
       }}
     >
