@@ -1,4 +1,9 @@
-export default function LoadingIndicatiorComponent({ className, ...props }) {
+import { IconProps } from "@/types/icon"
+
+export default function LoadingIndicatiorComponent({
+  className,
+  ...props
+}: IconProps) {
   return (
     <svg
       className={className}

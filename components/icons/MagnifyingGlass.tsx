@@ -1,4 +1,9 @@
-export default function SearchIconComponent({ className, ...props }) {
+import { IconProps } from "@/types/icon"
+
+export default function MagnifyingGlassIconComponent({
+  className,
+  ...props
+}: IconProps) {
   return (
     <svg
       className={className}

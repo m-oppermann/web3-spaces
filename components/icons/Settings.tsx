@@ -1,4 +1,9 @@
-export default function SettingsIconComponent({ className, ...props }) {
+import { IconProps } from "@/types/icon"
+
+export default function SettingsIconComponent({
+  className,
+  ...props
+}: IconProps) {
   return (
     <svg
       className={className}

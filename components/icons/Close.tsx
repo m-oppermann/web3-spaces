@@ -1,4 +1,6 @@
-export default function CloseIconComponent({ className, ...props }) {
+import { IconProps } from "@/types/icon"
+
+export default function CloseIconComponent({ className, ...props }: IconProps) {
   return (
     <svg
       className={className}

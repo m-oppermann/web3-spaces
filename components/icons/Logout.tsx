@@ -1,4 +1,9 @@
-export default function LogoutIconComponent({ className, ...props }) {
+import { IconProps } from "@/types/icon"
+
+export default function LogoutIconComponent({
+  className,
+  ...props
+}: IconProps) {
   return (
     <svg
       className={className}

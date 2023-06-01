@@ -1,6 +1,7 @@
+import { IconProps } from "@/types/icon"
 import { motion } from "framer-motion"
 
-export default function MoonIconComponent({ className, ...props }) {
+export default function MoonIconComponent({ className, ...props }: IconProps) {
   return (
     <motion.svg
       className={className}

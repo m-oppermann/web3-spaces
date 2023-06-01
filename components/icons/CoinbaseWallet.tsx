@@ -1,12 +1,9 @@
-interface CoinbaseWalletIconProps {
-  height: number
-  className?: string
-}
+import { IconProps } from "@/types/icon"
 
 export default function CoinbaseWalletIconComponent({
   className,
   ...props
-}: CoinbaseWalletIconProps) {
+}: IconProps) {
   return (
     <svg
       className={className}

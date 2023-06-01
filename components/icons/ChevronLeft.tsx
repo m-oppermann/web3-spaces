@@ -1,4 +1,9 @@
-export default function ChevronLeftComponent({ className, ...props }) {
+import { IconProps } from "@/types/icon"
+
+export default function ChevronLeftIconComponent({
+  className,
+  ...props
+}: IconProps) {
   return (
     <svg
       className={className}

@@ -1,12 +1,9 @@
-interface MetaMaskIconProps {
-  height: number
-  className?: string
-}
+import { IconProps } from "@/types/icon"
 
 export default function MetaMaskIconComponent({
   className,
   ...props
-}: MetaMaskIconProps) {
+}: IconProps) {
   return (
     <svg
       className={className}

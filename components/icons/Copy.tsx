@@ -1,4 +1,6 @@
-export default function CopyIconComponent({ className, ...props }) {
+import { IconProps } from "@/types/icon"
+
+export default function CopyIconComponent({ className, ...props }: IconProps) {
   return (
     <svg
       className={className}
