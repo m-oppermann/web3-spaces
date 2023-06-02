@@ -16,7 +16,7 @@ module.exports = {
       lg: { min: "1087px" },
       md: { min: "767px" },
       sm: { min: "639px" },
-      xs: { min: "389px" },
+      xs: { min: "415px" },
     },
     extend: {
       fontFamily: {
@@ -28,7 +28,7 @@ module.exports = {
         "-lg": { max: "1087px" },
         "-md": { max: "767px" },
         "-sm": { max: "639px" },
-        "-xs": { max: "389px" },
+        "-xs": { max: "415px" },
       },
       colors: {
         "radix-gray": {

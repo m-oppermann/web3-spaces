@@ -36,7 +36,7 @@ export default function HeaderComponent() {
         <div className="flex items-center gap-2">
           <Account />
           <Separator className={"h-7 w-px -sm:hidden"} />
-          <div className="-sm:hidden">
+          <div className="-xs:hidden">
             <Tooltip content="Theme">
               <ThemeToggle />
             </Tooltip>
