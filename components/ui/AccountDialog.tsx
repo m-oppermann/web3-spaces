@@ -82,9 +82,10 @@ export default forwardRef<HTMLButtonElement, AccountDialogProps>(
               <section className="mt-3 flex flex-col items-center justify-center gap-4">
                 <div className="pointer-events-none h-[72px] w-[72px]">
                   <Avatar
-                    tabIndex={-1}
                     address={address}
                     ensAvatar={ensAvatar}
+                    aria-label="User Avatar"
+                    tabIndex={-1}
                   />
                 </div>
                 <div className="flex flex-col items-center justify-center">

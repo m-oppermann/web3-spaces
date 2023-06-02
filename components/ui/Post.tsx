@@ -69,7 +69,7 @@ export default function PostComponent({
     >
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-2 lg:w-[440px]">
-          <h6 className="font-medium">Thought #{postNr}</h6>
+          <span className="font-medium">Thought #{postNr}</span>
           <p className="dark:text-radix-grayDark-11">{post.content}</p>
         </div>
         <div className="flex justify-between">
@@ -77,6 +77,7 @@ export default function PostComponent({
             <Avatar
               address={contributer?.address}
               ensAvatar={contributer?.ensAvatar}
+              aria-label="Contributer Avatar"
               tabIndex={-1}
             />
             <span>

@@ -99,7 +99,11 @@ export default function AccountComponent() {
             balance={balance}
             isLoadingBalance={isLoadingBalance}
           >
-            <Avatar address={address} ensAvatar={ensAvatar} />
+            <Avatar
+              address={address}
+              ensAvatar={ensAvatar}
+              aria-label="User Avatar"
+            />
           </AccountDialog>
         </Tooltip>
       </div>

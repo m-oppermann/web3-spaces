@@ -27,6 +27,7 @@ export default function HeaderComponent() {
           <Link
             href="/"
             className="rounded-xl focus:outline-none focus:ring-1 focus:ring-radix-gray-8 focus:ring-offset-2 focus:ring-offset-radix-gray-2 dark:focus:ring-radix-grayDark-8 dark:focus:ring-offset-radix-grayDark-2"
+            aria-label="Home"
           >
             <Logo width={64} height={36} />
           </Link>

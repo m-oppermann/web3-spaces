@@ -64,6 +64,7 @@ export default function SpaceGroupComponent({
                   onClick={() => setCurrentSpaceNr(currentSpaceNr - 1)}
                   className="group focus:outline-none disabled:opacity-50"
                   disabled={currentSpaceNr <= 1}
+                  aria-label="Previous Space"
                 >
                   <ChevronLeftIcon
                     className="stroke-radix-gray-11 group-focus:stroke-radix-gray-12 dark:stroke-radix-grayDark-11 dark:group-focus:stroke-radix-grayDark-12"
@@ -82,6 +83,7 @@ export default function SpaceGroupComponent({
                   </span>
                 </span>
                 <button
+                  aria-label="Next Space"
                   onClick={() => setCurrentSpaceNr(currentSpaceNr + 1)}
                   className="group focus:outline-none disabled:opacity-50"
                   disabled={currentSpaceNr >= spaces?.length}
@@ -113,6 +115,7 @@ export default function SpaceGroupComponent({
                     style={{ zIndex: index }}
                   >
                     <Avatar
+                      aria-label="Contributer Avatar"
                       address={contributer.address}
                       ensAvatar={contributer.ensAvatar}
                       tabIndex={-1}
