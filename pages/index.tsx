@@ -1,12 +1,13 @@
 import { useState, useEffect, createContext } from "react"
 
-import Layout from "@/components/Layout"
-import PostForm from "@/components/ui/PostForm"
-
-import PostSection from "@/components/PostSection"
-import SpaceGroup from "@/components/ui/SpaceGroup"
+import { Space, Post, User } from "@/types/entry"
 
 import { useAccount, useBalance } from "wagmi"
+
+import Layout from "@/components/Layout"
+import PostSection from "@/components/PostSection"
+import PostForm from "@/components/ui/PostForm"
+import SpaceGroup from "@/components/ui/SpaceGroup"
 
 export const Context = createContext(null)
 
@@ -14,16 +15,17 @@ export default function IndexPage() {
   const { address, isConnected } = useAccount()
   const { data: balance } = useBalance({ address })
 
-  const [spaces, setSpaces] = useState(null)
-  const [posts, setPosts] = useState(null)
-  const [users, setUsers] = useState(null)
-  const [currentSpace, setCurrentSpace] = useState(null)
-  const [currentUser, setCurrentUser] = useState(null)
-  const [contributers, setContributers] = useState(null)
+  const [spaces, setSpaces] = useState<Space[] | null>(null)
+  const [currentSpace, setCurrentSpace] = useState<Space | null>(null)
   const [currentSpaceNr, setCurrentSpaceNr] = useState(1)
-
   const [isLoadingSpaces, setIsLoadingSpaces] = useState(true)
+
+  const [posts, setPosts] = useState<Post[] | null>(null)
   const [isLoadingPosts, setIsLoadingPosts] = useState(true)
+
+  const [users, setUsers] = useState<User[] | null>(null)
+  const [currentUser, setCurrentUser] = useState<User | null>(null)
+  const [contributers, setContributers] = useState<User[] | null>(null)
   const [isLoadingUsers, setIsLoadingUsers] = useState(true)
 
   useEffect(() => {
@@ -58,9 +60,7 @@ export default function IndexPage() {
     const spaces = await response.json()
     if (response.status === 200) {
       setSpaces(spaces)
-      setTimeout(() => {
-        setIsLoadingSpaces(false)
-      }, 150)
+      setIsLoadingSpaces(false)
     }
   }
 
@@ -72,9 +72,7 @@ export default function IndexPage() {
     const posts = await response.json()
     if (response.status === 200) {
       setPosts(posts)
-      setTimeout(() => {
-        setIsLoadingPosts(false)
-      }, 150)
+      setIsLoadingPosts(false)
     }
   }
 
@@ -105,14 +103,14 @@ export default function IndexPage() {
       <Layout>
         <section className="mx-auto flex max-w-[1376px] gap-24 p-6 pt-28 -xl:gap-16 -lg:max-w-2xl -lg:flex-col -lg:gap-8 -lg:pb-4 -sm:pb-2 -sm:pt-24">
           <SpaceGroup
-            posts={posts}
             spaces={spaces}
             currentSpace={currentSpace}
             currentSpaceNr={currentSpaceNr}
             setCurrentSpaceNr={setCurrentSpaceNr}
-            contributers={contributers}
             isLoadingSpaces={isLoadingSpaces}
+            posts={posts}
             isLoadingPosts={isLoadingPosts}
+            contributers={contributers}
           />
           <div className="w-full flex-grow -lg:h-64">
             <PostForm
@@ -127,11 +125,11 @@ export default function IndexPage() {
         <PostSection
           isConnected={isConnected}
           balance={balance}
-          posts={posts}
           currentSpace={currentSpace}
+          posts={posts}
+          isLoadingPosts={isLoadingPosts}
           currentUser={currentUser}
           contributers={contributers}
-          isLoadingPosts={isLoadingPosts}
         />
       </Layout>
     </Context.Provider>
