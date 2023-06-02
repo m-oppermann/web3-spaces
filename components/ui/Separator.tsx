@@ -1,7 +1,11 @@
 import * as Separator from "@radix-ui/react-separator"
 import clsx from "clsx"
 
-export default function SeparatorComponent({ className }) {
+interface SeparatorProps {
+  className?: string
+}
+
+export default function SeparatorComponent({ className }: SeparatorProps) {
   return (
     <Separator.Root
       className={clsx(

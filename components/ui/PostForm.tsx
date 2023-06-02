@@ -1,10 +1,20 @@
 import { useState } from "react"
 
-import LoadingIndicatior from "../icons/LoadingIndicator"
+import { Space, User } from "@/types/entry"
+
+import { useSignMessage } from "wagmi"
 
 import Button from "./Button"
 
-import { useSignMessage } from "wagmi"
+import LoadingIndicatior from "../icons/LoadingIndicator"
+
+interface PostFormProps {
+  isConnected: boolean
+  currentSpace: Space
+  currentUser: User
+  readPosts: () => void
+  readUsers: () => void
+}
 
 export default function PostFormComponent({
   isConnected,
@@ -12,7 +22,7 @@ export default function PostFormComponent({
   currentUser,
   readPosts,
   readUsers,
-}) {
+}: PostFormProps) {
   const { isLoading, isError, signMessage } = useSignMessage({
     message:
       "This cryptographic signature is to verify that it is you posting this — not someone else. Before you sign, take a breath and make sure you are being helpful with your post.",
@@ -34,7 +44,7 @@ export default function PostFormComponent({
     setCount(0)
   }
 
-  const handleSubmit = event => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     signMessage()
     setIsSending(true)
@@ -43,7 +53,7 @@ export default function PostFormComponent({
     }
   }
 
-  const handleChange = event => {
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCount(event.target.value.length)
     setContent(event.target.value)
   }

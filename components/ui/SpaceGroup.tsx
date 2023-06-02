@@ -1,21 +1,34 @@
 import { useEffect } from "react"
 import { useAnimate, stagger } from "framer-motion"
 
-import ChevronLeft from "@/components/icons/ChevronLeft"
-import ChevronRight from "@/components/icons/ChevronRight"
+import { Space, Post, User } from "@/types/entry"
 
 import Avatar from "@/components/ui/Avatar"
 
+import ChevronLeftIcon from "@/components/icons/ChevronLeft"
+import ChevronRightIcon from "@/components/icons/ChevronRight"
+
+interface SpaceGroupProps {
+  spaces: Space[]
+  currentSpace: Space
+  currentSpaceNr: number
+  setCurrentSpaceNr: React.Dispatch<React.SetStateAction<number>>
+  isLoadingSpaces: boolean
+  posts: Post[]
+  isLoadingPosts: boolean
+  contributers: User[]
+}
+
 export default function SpaceGroupComponent({
-  posts,
   spaces,
   currentSpace,
   currentSpaceNr,
   setCurrentSpaceNr,
-  contributers,
   isLoadingSpaces,
+  posts,
   isLoadingPosts,
-}) {
+  contributers,
+}: SpaceGroupProps) {
   const [scope, animate] = useAnimate()
 
   useEffect(() => {
@@ -52,7 +65,7 @@ export default function SpaceGroupComponent({
                   className="group focus:outline-none disabled:opacity-50"
                   disabled={currentSpaceNr <= 1}
                 >
-                  <ChevronLeft
+                  <ChevronLeftIcon
                     className="stroke-radix-gray-11 group-focus:stroke-radix-gray-12 dark:stroke-radix-grayDark-11 dark:group-focus:stroke-radix-grayDark-12"
                     height={18}
                   />
@@ -73,7 +86,7 @@ export default function SpaceGroupComponent({
                   className="group focus:outline-none disabled:opacity-50"
                   disabled={currentSpaceNr >= spaces?.length}
                 >
-                  <ChevronRight
+                  <ChevronRightIcon
                     className="stroke-radix-gray-11 group-focus:stroke-radix-gray-12 dark:stroke-radix-grayDark-11 dark:group-focus:stroke-radix-grayDark-12"
                     height={18}
                   />

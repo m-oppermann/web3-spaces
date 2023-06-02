@@ -1,4 +1,5 @@
 import { forwardRef } from "react"
+
 import SearchIcon from "../icons/MagnifyingGlass"
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}

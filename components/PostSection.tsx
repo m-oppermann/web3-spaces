@@ -3,22 +3,36 @@ import { useScrollContainer } from "react-indiana-drag-scroll"
 import { motion, useAnimate, stagger } from "framer-motion"
 import clsx from "clsx"
 
-import Post from "@/components/ui/Post"
+import { Space, Post, User } from "@/types/entry"
+
+import { FetchBalanceResult } from "@wagmi/core"
+
+import PostComponent from "@/components/ui/Post"
+
+interface PostSectionProps {
+  currentSpace: Space
+  posts: Post[]
+  isLoadingPosts: boolean
+  currentUser: User
+  contributers: User[]
+  isConnected: boolean
+  balance?: FetchBalanceResult
+}
 
 export default function PostSectionComponent({
-  isConnected,
-  balance,
-  posts,
   currentSpace,
+  posts,
+  isLoadingPosts,
   currentUser,
   contributers,
-  isLoadingPosts,
-}) {
+  isConnected,
+  balance,
+}: PostSectionProps) {
   const [scope, animate] = useAnimate()
 
   const scrollContainer = useScrollContainer()
-  const [scrollLeft, setScrollLeft] = useState(true)
-  const [scrollRight, setscrollRight] = useState(false)
+  const [scrollLeft, setScrollLeft] = useState<boolean>(true)
+  const [scrollRight, setscrollRight] = useState<boolean>(false)
 
   useEffect(() => {
     if (!isLoadingPosts) {
@@ -40,8 +54,8 @@ export default function PostSectionComponent({
     }
   }, [animate, currentSpace, isLoadingPosts, posts])
 
-  const handleScrollEnd = event => {
-    const { scrollLeft, scrollWidth, clientWidth } = event.target
+  const handleScrollEnd = (event: React.UIEvent<HTMLDivElement>) => {
+    const { scrollLeft, scrollWidth, clientWidth } = event.currentTarget
     setScrollLeft(scrollLeft === 0)
     setscrollRight(scrollWidth - scrollLeft === clientWidth)
   }
@@ -82,7 +96,9 @@ export default function PostSectionComponent({
                   .filter(post => post.spaceId === currentSpace?.id)
                   .map((post, index) => (
                     <div data-group key={index}>
-                      <Post
+                      <PostComponent
+                        isConnected={isConnected}
+                        balance={balance}
                         post={post}
                         postNr={
                           posts?.filter(
@@ -91,8 +107,6 @@ export default function PostSectionComponent({
                         }
                         currentUser={currentUser}
                         contributers={contributers}
-                        isConnected={isConnected}
-                        balance={balance}
                       />
                     </div>
                   ))}

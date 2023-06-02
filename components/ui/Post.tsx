@@ -1,21 +1,33 @@
 import { useState, useEffect } from "react"
 
-import LoadingIndicatior from "../icons/LoadingIndicator"
+import { Post, User } from "@/types/entry"
+
+import { FetchBalanceResult } from "@wagmi/core"
+import { useSendTransaction, usePrepareSendTransaction } from "wagmi"
+import { parseEther } from "viem"
 
 import Avatar from "./Avatar"
 import Button from "./Button"
 
-import { useSendTransaction, usePrepareSendTransaction } from "wagmi"
-import { parseEther } from "viem"
+import LoadingIndicatior from "../icons/LoadingIndicator"
+
+interface PostProps {
+  isConnected: boolean
+  balance?: FetchBalanceResult
+  post: Post
+  postNr: number
+  currentUser: { id: number }
+  contributers: User[]
+}
 
 export default function PostComponent({
+  isConnected,
+  balance,
   post,
   postNr,
   currentUser,
   contributers,
-  isConnected,
-  balance,
-}) {
+}: PostProps) {
   const [mounted, setMounted] = useState(false)
 
   const [contributer, setContributer] = useState(null)
@@ -38,7 +50,7 @@ export default function PostComponent({
   useEffect(() => {
     setMounted(true)
 
-    if (balance?.formatted > 0.01) {
+    if (parseFloat(balance?.formatted) > 0.01) {
       setTxValue("0.01")
     } else {
       setTxValue("0")
@@ -81,7 +93,7 @@ export default function PostComponent({
             intent="secondary"
             disabled={
               !isConnected ||
-              balance?.formatted < 0.01 ||
+              parseFloat(balance?.formatted) < 0.01 ||
               !sendTransaction ||
               isLoadingTx ||
               byCurrentUser

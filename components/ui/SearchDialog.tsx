@@ -2,13 +2,15 @@ import { useState, useEffect, useContext } from "react"
 import { motion } from "framer-motion"
 import { Command } from "cmdk"
 
-import ChevronRight from "../icons/ChevronRight"
-import CloseIcon from "../icons/Close"
+import { Space, Post } from "@/types/entry"
+
+import { Context } from "@/pages/index"
 
 import SearchButton from "./SearchButton"
 import Separator from "./Separator"
 
-import { Context } from "@/pages/index"
+import ChevronRightIcon from "../icons/ChevronRight"
+import CloseIcon from "../icons/Close"
 
 export default function SearchDialogComponent() {
   const [open, setOpen] = useState(false)
@@ -17,7 +19,7 @@ export default function SearchDialogComponent() {
     useContext(Context)
 
   useEffect(() => {
-    const down = event => {
+    const down = (event: KeyboardEvent) => {
       if (event.key === "k" && (event.metaKey || event.ctrlKey)) {
         event.preventDefault()
         setOpen(open => !open)
@@ -73,14 +75,14 @@ export default function SearchDialogComponent() {
                   No results found.
                 </Command.Empty>
                 <Command.Group>
-                  {spaces?.map((space, index) => (
+                  {spaces?.map((space: Space, index) => (
                     <Command.Item
                       key={index}
                       value={space.title}
                       onSelect={() => {
                         setOpen(false)
                         setCurrentSpace(
-                          spaces.find(space => space.id === index + 1)
+                          spaces.find((space: Space) => space.id === index + 1)
                         )
                         setCurrentSpaceNr(space.id)
                       }}
@@ -91,13 +93,15 @@ export default function SearchDialogComponent() {
                         data-hidden
                         className="mt-1 text-sm text-radix-gray-11 dark:text-radix-grayDark-11"
                       >
-                        {posts?.filter(post => post.spaceId === space.id)
-                          .length + " "}
+                        {posts?.filter(
+                          (post: Post) => post.spaceId === space.id
+                        ).length + " "}
                         Contribution
-                        {posts?.filter(post => post.spaceId === space.id)
-                          .length !== 1 && "s"}
+                        {posts?.filter(
+                          (post: Post) => post.spaceId === space.id
+                        ).length !== 1 && "s"}
                       </span>
-                      <ChevronRight
+                      <ChevronRightIcon
                         height={18}
                         className="absolute right-4 stroke-radix-gray-10 dark:stroke-radix-grayDark-10 sm:invisible sm:group-aria-selected:visible"
                       />

@@ -2,6 +2,9 @@ import * as Dialog from "@radix-ui/react-dialog"
 import { forwardRef, useState } from "react"
 import { motion } from "framer-motion"
 
+import { FetchBalanceResult } from "@wagmi/core"
+import { useDisconnect } from "wagmi"
+
 import Avatar from "./Avatar"
 import Button from "./Button"
 
@@ -10,14 +13,11 @@ import LogoutIcon from "../icons/Logout"
 import CopyIcon from "../icons/Copy"
 import CheckIcon from "../icons/Check"
 
-import { FetchBalanceResult } from "@wagmi/core"
-import { useDisconnect } from "wagmi"
-
 interface AccountDialogProps extends React.HTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
   address: string
-  ensName?: string
-  ensAvatar?: string
+  ensName?: string | null
+  ensAvatar?: string | null
   isLoadingAvatar?: boolean
   balance?: FetchBalanceResult
   isLoadingBalance?: boolean
@@ -97,24 +97,24 @@ export default forwardRef<HTMLButtonElement, AccountDialogProps>(
                         ? `${ensName}`
                         : address.slice(0, 4) + "..." + address.slice(-4)}
                     </h6>
-                      {copied ? (
-                        <CheckIcon
-                          initial={{ y: 2, scale: 0.9 }}
-                          animate={{ y: 0, scale: 1 }}
-                          transition={{
-                            type: "spring",
-                            stiffness: 500,
-                            damping: 15,
-                          }}
-                          height={19}
-                          className="absolute -right-6 top-[3px] stroke-green-500 dark:stroke-green-500"
-                        />
-                      ) : (
-                        <CopyIcon
-                          height={19}
-                          className="absolute -right-6 top-1 stroke-radix-gray-8 transition-all duration-150 ease-in-out group-hover:stroke-radix-gray-11 dark:stroke-radix-grayDark-8 dark:group-hover:stroke-radix-grayDark-11"
-                        />
-                      )}
+                    {copied ? (
+                      <CheckIcon
+                        initial={{ y: 2, scale: 0.9 }}
+                        animate={{ y: 0, scale: 1 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 500,
+                          damping: 15,
+                        }}
+                        height={19}
+                        className="absolute -right-6 top-[3px] stroke-green-500 dark:stroke-green-500"
+                      />
+                    ) : (
+                      <CopyIcon
+                        height={19}
+                        className="absolute -right-6 top-1 stroke-radix-gray-8 transition-all duration-150 ease-in-out group-hover:stroke-radix-gray-11 dark:stroke-radix-grayDark-8 dark:group-hover:stroke-radix-grayDark-11"
+                      />
+                    )}
                   </div>
                   {isLoadingBalance ? (
                     <div className="mb-2 flex h-6 w-16 items-center ">

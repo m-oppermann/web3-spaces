@@ -1,13 +1,15 @@
 import { useState, useEffect, useContext } from "react"
 import { Context } from "@/pages/index"
 
-import ConnectDropdown from "./ConnectDropdown"
+import { User } from "@/types/entry"
+
+import { useAccount, useEnsName, useEnsAvatar, useBalance } from "wagmi"
+
 import Button from "./Button"
 import Avatar from "./Avatar"
 import Tooltip from "./Tooltip"
+import ConnectDropdown from "./ConnectDropdown"
 import AccountDialog from "./AccountDialog"
-
-import { useAccount, useEnsName, useEnsAvatar, useBalance } from "wagmi"
 
 export default function AccountComponent() {
   const [mounted, setMounted] = useState(false)
@@ -32,7 +34,7 @@ export default function AccountComponent() {
       !isLoadingName &&
       !isLoadingAvatar &&
       !isLoadingUsers &&
-      !users?.find(user => user.address === address)
+      !users?.find((user: User) => user.address === address)
     ) {
       handleNewUser()
     }
@@ -51,8 +53,8 @@ export default function AccountComponent() {
       mounted &&
       isConnected &&
       !isLoadingUsers &&
-      !users?.find(user => user.ensName === ensName) &&
-      !users?.find(user => user.ensAvatar === ensAvatar)
+      !users?.find((user: User) => user.ensName === ensName) &&
+      !users?.find((user: User) => user.ensAvatar === ensAvatar)
     ) {
       handleUpdateUser()
     }

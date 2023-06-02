@@ -9,7 +9,7 @@ interface AvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
 export default forwardRef<HTMLSpanElement, AvatarProps>(
   function AvatarComponent({ address, ensAvatar, ...props }, ref) {
     const [mounted, setMounted] = useState(false)
-    const [colors, setColors] = useState([])
+    const [colors, setColors] = useState<string[]>([])
 
     const gradient = {
       background: `radial-gradient(100% 100% at 0% 0%, ${colors[0]} 35%, ${colors[1]} 65%, ${colors[2]} 100%)`,

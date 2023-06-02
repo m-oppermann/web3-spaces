@@ -2,12 +2,12 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
 import { forwardRef } from "react"
 import { motion } from "framer-motion"
 
+import { useConnect } from "wagmi"
+
 import MetaMaskIcon from "../icons/MetaMask"
 import CoinbaseWalletIcon from "../icons/CoinbaseWallet"
 import WalletConnectIcon from "../icons/WalletConnect"
 import LoadingIndicatior from "../icons/LoadingIndicator"
-
-import { useConnect } from "wagmi"
 
 interface ConnectDropdownProps extends React.HTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
@@ -39,7 +39,7 @@ export default forwardRef<HTMLButtonElement, ConnectDropdownProps>(
                 {connectors.map(connector => (
                   <DropdownMenu.Item
                     key={connector.id}
-                    onSelect={(event: Event) => {
+                    onSelect={event => {
                       event.preventDefault()
                       connect({ connector })
                     }}
