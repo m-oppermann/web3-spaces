@@ -56,7 +56,7 @@ export default function SpaceGroupComponent({
           <div className="h-10 w-48 animate-pulse rounded-xl bg-radix-gray-4 p-1.5 dark:bg-radix-grayDark-4" />
         </>
       ) : (
-        <div ref={scope}>
+        <div ref={scope} className="min-h-[296px]">
           <div className="mb-3 flex">
             <div className="rounded-full bg-radix-gray-4 p-1.5 dark:bg-radix-grayDark-4">
               <div data-item className="flex items-center gap-px">
