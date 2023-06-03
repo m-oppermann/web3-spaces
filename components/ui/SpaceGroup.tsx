@@ -73,7 +73,7 @@ export default function SpaceGroupComponent({
                 </button>
                 <span className="pointer-events-none flex gap-[2.5px] text-sm font-medium">
                   <span className="flex min-w-[10px] justify-center">
-                    {currentSpace?.id}
+                    {currentSpace?.id ? currentSpace?.id : 0}
                   </span>
                   <span className="text-radix-gray-9 dark:text-radix-grayDark-9">
                     /
@@ -98,10 +98,12 @@ export default function SpaceGroupComponent({
           </div>
           <div data-group>
             <h1 className="mb-4 w-11/12 text-4xl font-medium -sm:text-3xl -xs:text-2xl">
-              {currentSpace?.title}
+              {currentSpace?.title ? currentSpace?.title : "Untitled Space"}
             </h1>
             <p className="mb-8 text-xl text-radix-gray-11 dark:text-radix-grayDark-11 -lg:mb-6 -sm:text-lg">
-              {currentSpace?.description}
+              {currentSpace?.description
+                ? currentSpace?.description
+                : "No description provided."}
             </p>
           </div>
           <div data-group="1" className="flex h-10 items-center">

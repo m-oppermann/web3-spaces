@@ -71,43 +71,51 @@ export default function SearchDialogComponent() {
               </div>
             ) : (
               <>
+                <Command.Group>
+                  {spaces?.length > 0 ? (
+                    spaces?.map((space: Space, index) => (
+                      <Command.Item
+                        key={index}
+                        value={space.title}
+                        onSelect={() => {
+                          setOpen(false)
+                          setCurrentSpace(
+                            spaces.find(
+                              (space: Space) => space.id === index + 1
+                            )
+                          )
+                          setCurrentSpaceNr(space.id)
+                        }}
+                        className="group relative flex cursor-pointer flex-col justify-center rounded-xl py-2 px-4 sm:aria-selected:bg-radix-gray-2 sm:dark:aria-selected:bg-radix-grayDark-2"
+                      >
+                        <p className="w-11/12">{space.title}</p>
+                        <span
+                          data-hidden
+                          className="mt-1 text-sm text-radix-gray-11 dark:text-radix-grayDark-11"
+                        >
+                          {posts?.filter(
+                            (post: Post) => post.spaceId === space.id
+                          ).length + " "}
+                          Contribution
+                          {posts?.filter(
+                            (post: Post) => post.spaceId === space.id
+                          ).length !== 1 && "s"}
+                        </span>
+                        <ChevronRightIcon
+                          height={18}
+                          className="absolute right-4 stroke-radix-gray-10 dark:stroke-radix-grayDark-10 sm:invisible sm:group-aria-selected:visible"
+                        />
+                      </Command.Item>
+                    ))
+                  ) : (
+                    <div className="flex h-16 items-center justify-center text-radix-gray-11 dark:text-radix-grayDark-11">
+                      No spaces found.
+                    </div>
+                  )}
+                </Command.Group>
                 <Command.Empty className="flex h-16 items-center justify-center text-radix-gray-11 dark:text-radix-grayDark-11">
                   No results found.
                 </Command.Empty>
-                <Command.Group>
-                  {spaces?.map((space: Space, index) => (
-                    <Command.Item
-                      key={index}
-                      value={space.title}
-                      onSelect={() => {
-                        setOpen(false)
-                        setCurrentSpace(
-                          spaces.find((space: Space) => space.id === index + 1)
-                        )
-                        setCurrentSpaceNr(space.id)
-                      }}
-                      className="group relative flex cursor-pointer flex-col justify-center rounded-xl py-2 px-4 sm:aria-selected:bg-radix-gray-2 sm:dark:aria-selected:bg-radix-grayDark-2"
-                    >
-                      <p className="w-11/12">{space.title}</p>
-                      <span
-                        data-hidden
-                        className="mt-1 text-sm text-radix-gray-11 dark:text-radix-grayDark-11"
-                      >
-                        {posts?.filter(
-                          (post: Post) => post.spaceId === space.id
-                        ).length + " "}
-                        Contribution
-                        {posts?.filter(
-                          (post: Post) => post.spaceId === space.id
-                        ).length !== 1 && "s"}
-                      </span>
-                      <ChevronRightIcon
-                        height={18}
-                        className="absolute right-4 stroke-radix-gray-10 dark:stroke-radix-grayDark-10 sm:invisible sm:group-aria-selected:visible"
-                      />
-                    </Command.Item>
-                  ))}
-                </Command.Group>
               </>
             )}
           </Command.List>
