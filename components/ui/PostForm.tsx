@@ -37,7 +37,7 @@ export default function PostFormComponent({
 
   const [content, setContent] = useState("")
   const [count, setCount] = useState(0)
-  const maxLength = 220
+  const maxLength = 250
 
   const resetContent = () => {
     setContent("")
