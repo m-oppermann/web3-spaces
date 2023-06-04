@@ -42,7 +42,7 @@ export default function PostComponent({
 
   useEffect(() => {
     setContributer(
-      contributers?.find(contributer => contributer.id === post.userId)
+      contributers?.find(contributer => contributer?.id === post.userId)
     )
     setByCurrentUser(currentUser?.id === post.userId)
   }, [post, contributers, currentUser])
