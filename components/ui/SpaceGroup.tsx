@@ -118,8 +118,8 @@ export default function SpaceGroupComponent({
                   >
                     <Avatar
                       aria-label="Contributer Avatar"
-                      address={contributer.address}
-                      ensAvatar={contributer.ensAvatar}
+                      address={contributer?.address}
+                      ensAvatar={contributer?.ensAvatar}
                       tabIndex={-1}
                     />
                   </li>
