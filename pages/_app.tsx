@@ -2,6 +2,7 @@ import "@/styles/globals.css"
 import { AppProps } from "next/app"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "next-themes"
+import { Analytics } from "@vercel/analytics/react"
 
 import { WagmiConfig, createConfig, configureChains, mainnet } from "wagmi"
 import { infuraProvider } from "wagmi/providers/infura"
@@ -61,6 +62,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <WagmiConfig config={config}>
           <Component {...pageProps} />
+          <Analytics />
         </WagmiConfig>
       </ThemeProvider>
     </>
