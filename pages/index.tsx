@@ -44,13 +44,11 @@ export default function IndexPage() {
 
   useEffect(() => {
     setContributers(
-      users?.filter(user =>
-        posts?.find(
-          post => post.userId === user.id && post.spaceId === currentSpace?.id
-        )
-      )
+      posts
+        ?.filter(post => post.spaceId === currentSpace?.id)
+        .map(post => users?.find(user => user.id === post.userId))
     )
-  }, [users, posts, currentSpace])
+  }, [posts, users, currentSpace])
 
   const readSpaces = async () => {
     const response = await fetch("/api/space", {
