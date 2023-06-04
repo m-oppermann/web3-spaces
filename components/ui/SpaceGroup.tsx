@@ -96,7 +96,7 @@ export default function SpaceGroupComponent({
               </div>
             </div>
           </div>
-          <div data-group>
+          <div data-group className="mb-8 min-h-[180px]">
             <h1 className="mb-4 w-11/12 text-4xl font-medium -sm:text-3xl -xs:text-2xl">
               {currentSpace?.title ? currentSpace?.title : "Untitled Space"}
             </h1>
