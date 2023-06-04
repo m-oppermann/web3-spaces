@@ -25,7 +25,7 @@ export default function PostFormComponent({
 }: PostFormProps) {
   const { isLoading, isError, signMessage } = useSignMessage({
     message:
-      "This cryptographic signature is to verify that it is you posting this — not someone else. Before you sign, take a breath and make sure you are being helpful with your post.",
+      "This cryptographic signature is to verify that it is you posting this – not someone else. Before you sign, take a breath and make sure you are being helpful.",
     onSuccess() {
       submitPost()
     },
